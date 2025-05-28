@@ -1,9 +1,4 @@
-/*!
-Waypoints - 4.0.1
-Copyright © 2011-2016 Caleb Troughton
-Licensed under the MIT license.
-https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
-*/
+
 (function() {
   'use strict'
 
@@ -42,7 +37,6 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
     this.group.add(this)
     this.context.add(this)
     allWaypoints[this.key] = this
-    keyCounter += 1
   }
 
   /* Private */
