@@ -40,10 +40,292 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        /* Cookie Consent Banner Styles */
+        #cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 9999;
+            display: none;
+        }
+        
+        .cookie-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .cookie-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .cookie-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        #accept-cookies {
+            background: #25D366;
+            color: white;
+        }
+        
+        #accept-cookies:hover {
+            background: #128C7E;
+        }
+        
+        #reject-cookies {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        #reject-cookies:hover {
+            background: #c0392b;
+        }
+        
+        #cookie-settings {
+            background: #3498db;
+            color: white;
+        }
+        
+        #cookie-settings:hover {
+            background: #2980b9;
+        }
+        
+        .cookie-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 9998;
+            display: none;
+        }
+        
+        .cookie-settings-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            z-index: 9999;
+            max-width: 600px;
+            width: 90%;
+            display: none;
+        }
+        
+        .cookie-settings-modal h3 {
+            color: #25D366;
+            margin-bottom: 20px;
+        }
+        
+        .cookie-category {
+            margin-bottom: 20px;
+        }
+        
+        .cookie-category label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .cookie-category input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
-
 <body>
 
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent-banner">
+        <div class="cookie-container">
+            <div class="cookie-text">
+                <p>We use cookies to enhance your experience on our website. By clicking "Accept All", you consent to our use of all cookies. You can manage your preferences in "Cookie Settings".</p>
+            </div>
+            <div class="cookie-actions">
+                <button id="accept-cookies" class="cookie-btn">Accept All</button>
+                <button id="reject-cookies" class="cookie-btn">Reject All</button>
+                <button id="cookie-settings" class="cookie-btn">Cookie Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-overlay" id="cookie-overlay"></div>
+    <div class="cookie-settings-modal" id="cookie-settings-modal">
+        <h3>Cookie Preferences</h3>
+        <p>Manage your cookie preferences below. You can change these settings at any time.</p>
+        
+        <div class="cookie-category">
+            <label>
+                <input type="checkbox" id="essential-cookies" checked disabled>
+                <strong>Essential Cookies</strong>
+                <span>(Always Active)</span>
+            </label>
+            <p>Necessary for the website to function and cannot be switched off.</p>
+        </div>
+        
+        <div class="cookie-category">
+            <label>
+                <input type="checkbox" id="analytics-cookies" checked>
+                <strong>Analytics Cookies</strong>
+            </label>
+            <p>Allow us to analyze website traffic and improve your experience.</p>
+        </div>
+        
+        <div class="cookie-category">
+            <label>
+                <input type="checkbox" id="marketing-cookies">
+                <strong>Marketing Cookies</strong>
+            </label>
+            <p>Used to track visitors across websites for advertising purposes.</p>
+        </div>
+        
+        <div class="modal-actions">
+            <button id="save-settings" class="cookie-btn" style="background: #25D366; color: white;">Save Preferences</button>
+            <button id="close-settings" class="cookie-btn" style="background: #95a5a6; color: white;">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript for Cookie Consent -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cookieBanner = document.getElementById('cookie-consent-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const rejectBtn = document.getElementById('reject-cookies');
+            const settingsBtn = document.getElementById('cookie-settings');
+            const cookieOverlay = document.getElementById('cookie-overlay');
+            const cookieModal = document.getElementById('cookie-settings-modal');
+            const saveSettingsBtn = document.getElementById('save-settings');
+            const closeSettingsBtn = document.getElementById('close-settings');
+            
+            // Check if user has already made a choice
+            if (!getCookie('cookie_consent')) {
+                // Show banner after 1 second
+                setTimeout(() => {
+                    cookieBanner.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                }, 1000);
+            }
+            
+            // Accept all cookies
+            acceptBtn.addEventListener('click', function() {
+                setCookie('cookie_consent', 'all', 365);
+                setCookie('analytics_cookies', 'true', 365);
+                setCookie('marketing_cookies', 'true', 365);
+                cookieBanner.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // Initialize analytics/marketing scripts here
+                console.log('All cookies accepted');
+            });
+            
+            // Reject all cookies (only essential)
+            rejectBtn.addEventListener('click', function() {
+                setCookie('cookie_consent', 'essential', 365);
+                setCookie('analytics_cookies', 'false', 365);
+                setCookie('marketing_cookies', 'false', 365);
+                cookieBanner.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                console.log('Only essential cookies accepted');
+            });
+            
+            // Open settings modal
+            settingsBtn.addEventListener('click', function() {
+                cookieOverlay.style.display = 'block';
+                cookieModal.style.display = 'block';
+            });
+            
+            // Close settings modal
+            closeSettingsBtn.addEventListener('click', closeModal);
+            cookieOverlay.addEventListener('click', closeModal);
+            
+            // Save settings
+            saveSettingsBtn.addEventListener('click', function() {
+                const analytics = document.getElementById('analytics-cookies').checked;
+                const marketing = document.getElementById('marketing-cookies').checked;
+                
+                setCookie('cookie_consent', 'custom', 365);
+                setCookie('analytics_cookies', analytics.toString(), 365);
+                setCookie('marketing_cookies', marketing.toString(), 365);
+                
+                closeModal();
+                cookieBanner.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                console.log('Custom preferences saved:');
+                console.log('Analytics:', analytics);
+                console.log('Marketing:', marketing);
+                
+                // Initialize scripts based on preferences
+                if (analytics) {
+                    // Load analytics scripts
+                }
+                if (marketing) {
+                    // Load marketing scripts
+                }
+            });
+            
+            function closeModal() {
+                cookieOverlay.style.display = 'none';
+                cookieModal.style.display = 'none';
+            }
+            
+            // Cookie helper functions
+            function setCookie(name, value, days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/";
+            }
+            
+            function getCookie(name) {
+                const cookieName = name + "=";
+                const decodedCookie = decodeURIComponent(document.cookie);
+                const cookieArray = decodedCookie.split(';');
+                for(let i = 0; i < cookieArray.length; i++) {
+                    let cookie = cookieArray[i];
+                    while (cookie.charAt(0) == ' ') {
+                        cookie = cookie.substring(1);
+                    }
+                    if (cookie.indexOf(cookieName) == 0) {
+                        return cookie.substring(cookieName.length, cookie.length);
+                    }
+                }
+                return "";
+            }
+        });
+    </script>
+</body>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
@@ -3530,18 +3812,23 @@ document.addEventListener('DOMContentLoaded', function() {
   <footer id="footer">
 
     <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Join our news letter for amazing updates</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <h4>Join Our Newsletter</h4>
+        <p>Join our news letter for amazing updates</p>
+        <form action="https://formspree.io/f/xknekeno" method="POST">
+          <input type="email" name="email" required placeholder="Your email address">
+          <input type="submit" value="Subscribe">
+          <!-- Optional: Add a hidden input for form identification -->
+          <input type="hidden" name="_subject" value="New Newsletter Subscriber">
+          <input type="hidden" name="_replyto" value="%email%">
+          <input type="text" name="_gotcha" style="display:none">
+        </form>
       </div>
     </div>
+  </div>
+</div>
 
     <div class="footer-top">
       <div class="container">
@@ -3561,36 +3848,34 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="terms.html">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="policy.html">Privacy policy</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Graphic Design</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Social Networks</h4>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://x.com/WorldWays1Dvlps?t=tvVRJfx_bhic2MLQgccpXw&s=09" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="https://www.facebook.com/share/1Anp2jHMPx/" class="facebook"><i class="bx bxl-facebook"></i></a>
               <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              <a href="https://www.linkedin.com/in/absolom-ondara-602789326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -3610,7 +3895,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#hero" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
@@ -3658,7 +3943,44 @@ document.addEventListener('DOMContentLoaded', function() {
     e.preventDefault();
   });
 </script>
-
+<style>
+        .whatsapp-float {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 16px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            height: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+        
+        .whatsapp-icon {
+            margin-right: 8px;
+            font-size: 24px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <a href="https://wa.me/254112293409?text=Hello%20WorldWays%20Web-Developers" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+        Contact Us
+    </a>
 </body>
 
 </html>
