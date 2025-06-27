@@ -1778,6 +1778,876 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </section>
+<!---------------------- web hosting section starts here------------------------>
+<section>
+    <style>
+        :root {
+            --primary-color: #0a1f3d;
+            --secondary-color: #1a3a6a;
+            --accent-color: #3a7bd5;
+            --text-color: #ffffff;
+            --light-text: #e0e0e0;
+            --success-color: #4CAF50;
+            --error-color: #f44336;
+            --warning-color: #FFC107;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .hosting-section {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 60px 20px;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hosting-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hosting-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--accent-color), #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hosting-header p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .hosting-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .domain-search {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .domain-search h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .search-box {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .search-box button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .search-box button:hover {
+            background-color: #2a6bc5;
+        }
+        
+        .search-results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .domain-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .domain-result:last-child {
+            border-bottom: none;
+        }
+        
+        .domain-status {
+            display: flex;
+            align-items: center;
+        }
+        
+        .domain-status.available {
+            color: var(--success-color);
+        }
+        
+        .domain-status.taken {
+            color: var(--error-color);
+        }
+        
+        .domain-status i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .purchase-btn {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: none;
+        }
+        
+        .purchase-btn:hover {
+            background-color: #3e8e41;
+        }
+        
+        .login-to-purchase {
+            background-color: var(--warning-color);
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .login-to-purchase:hover {
+            background-color: #e0a800;
+        }
+        
+        .tld-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tld-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tld-item:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .popular-tlds {
+            margin-top: 30px;
+        }
+        
+        .popular-tlds h4 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .auth-options {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-options h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .auth-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .auth-tab.active {
+            color: var(--accent-color);
+        }
+        
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2a6bc5;
+        }
+        
+        .btn-link {
+            background: none;
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        .btn-link:hover {
+            color: #2a6bc5;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-top: 10px;
+        }
+        
+        .forgot-password a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        
+        .success-message {
+            display: none;
+            padding: 15px;
+            background-color: rgba(76, 175, 80, 0.2);
+            border: 1px solid var(--success-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            color: var(--success-color);
+        }
+        
+        .success-message.active {
+            display: block;
+        }
+        
+        .domain-pricing {
+            margin-top: 40px;
+            width: 100%;
+        }
+        
+        .domain-pricing h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .pricing-table th, .pricing-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pricing-table th {
+            background-color: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+        
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .hosting-container {
+                flex-direction: column;
+            }
+            
+            .hosting-header h2 {
+                font-size: 2rem;
+            }
+            .loading {
+    padding: 15px;
+    text-align: center;
+    color: var(--accent-color);
+    font-style: italic;
+}
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <section class="hosting-section">
+        <div class="hosting-header">
+            <h2>Domain Registration Services</h2>
+            <p>Secure your perfect domain name with WorldWays Web-Developers. Register your .co.ke, .com, .org, or other TLDs today and establish your online presence.</p>
+        </div>
+        
+        <div class="hosting-container">
+            <div class="domain-search">
+                <h3>Find Your Perfect Domain</h3>
+                <div class="search-box">
+                    <input type="text" id="domain-search-input" placeholder="Enter your desired domain name">
+                    <button id="search-domain-btn">Search</button>
+                </div>
+                
+                <div id="search-results" class="search-results">
+                    <!-- Results will be dynamically inserted here -->
+                </div>
+                
+                <div class="tld-list">
+                    <div class="tld-item">.co.ke</div>
+                    <div class="tld-item">.com</div>
+                    <div class="tld-item">.org</div>
+                    <div class="tld-item">.net</div>
+                    <div class="tld-item">.info</div>
+                    <div class="tld-item">.biz</div>
+                    <div class="tld-item">.me</div>
+                </div>
+                
+                <div class="popular-tlds">
+                    <h4>Kenya-Specific Domains:</h4>
+                    <div class="tld-list">
+                        <div class="tld-item">.ac.ke</div>
+                        <div class="tld-item">.go.ke</div>
+                        <div class="tld-item">.sc.ke</div>
+                        <div class="tld-item">.or.ke</div>
+                        <div class="tld-item">.ne.ke</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auth-options">
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="switchTab('login')">Login</div>
+                    <div class="auth-tab" onclick="switchTab('signup')">Create Account</div>
+                </div>
+                
+                <div id="login-form" class="auth-form active">
+                    <div id="login-success" class="success-message">
+                        Account created successfully! You can now login.
+                    </div>
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="••••••••">
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#" onclick="switchTab('forgot')">Forgot your password?</a>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary" id="login-btn">Login</button>
+                    </div>
+                </div>
+                
+                <div id="signup-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-phone">Phone Number</label>
+                        <input type="tel" id="signup-phone" placeholder="+254 7XX XXX XXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-gender">Gender</label>
+                        <select id="signup-gender">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-company">Company Name (Optional)</label>
+                        <input type="text" id="signup-company" placeholder="Your company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-purpose">Purpose of Registration</label>
+                        <select id="signup-purpose">
+                            <option value="">Select Purpose</option>
+                            <option value="personal">Personal Website/Blog</option>
+                            <option value="business">Business Website</option>
+                            <option value="portfolio">Portfolio</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="organization">Organization/NGO</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Create Password</label>
+                        <input type="password" id="signup-password" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" placeholder="••••••••">
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary" id="signup-btn">Create Account</button>
+                    </div>
+                </div>
+                
+                <div id="forgot-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="forgot-email">Email Address</label>
+                        <input type="email" id="forgot-email" placeholder="your@email.com">
+                    </div>
+                    <p style="margin-bottom: 20px; color: var(--light-text); font-size: 0.9rem;">
+                        We'll send you a link to reset your password.
+                    </p>
+                    <div class="form-actions">
+                        <button class="btn btn-primary">Send Reset Link</button>
+                        <button class="btn btn-link" onclick="switchTab('login')">Back to Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Track login state
+        let isLoggedIn = false;
+        let createdAccount = false;
+        
+        // Store domain availability (simulating a database)
+        const domainAvailability = {
+            // Pre-populate with some taken domains
+            'google.com': false,
+            'facebook.com': false,
+            'twitter.com': false,
+            'example.co.ke': false,
+            'test.go.ke': false
+        };
+        
+        // DOM elements
+        const domainSearchInput = document.getElementById('domain-search-input');
+        const searchDomainBtn = document.getElementById('search-domain-btn');
+        const searchResults = document.getElementById('search-results');
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const loginSuccessMsg = document.getElementById('login-success');
+        
+        // Switch between auth tabs
+        function switchTab(tabName) {
+            // Hide all forms
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected form and activate tab
+            if (tabName === 'login') {
+                document.getElementById('login-form').classList.add('active');
+                document.querySelectorAll('.auth-tab')[0].classList.add('active');
+                
+                // Show success message if account was just created
+                if (createdAccount) {
+                    loginSuccessMsg.classList.add('active');
+                    createdAccount = false;
+                }
+            } else if (tabName === 'signup') {
+                document.getElementById('signup-form').classList.add('active');
+                document.querySelectorAll('.auth-tab')[1].classList.add('active');
+                loginSuccessMsg.classList.remove('active');
+            } else if (tabName === 'forgot') {
+                document.getElementById('forgot-form').classList.add('active');
+            }
+        }
+        
+        // Add click event to TLD items to populate search box
+        document.querySelectorAll('.tld-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const currentValue = domainSearchInput.value.trim();
+                const tld = this.textContent;
+                
+                if (currentValue === '') {
+                    domainSearchInput.value = 'example' + tld;
+                } else {
+                    // Remove any existing TLD
+                    const baseName = currentValue.split('.')[0];
+                    domainSearchInput.value = baseName + tld;
+                }
+            });
+        });
+        
+        // Domain search functionality
+        searchDomainBtn.addEventListener('click', function() {
+            const domain = domainSearchInput.value.trim().toLowerCase();
+            
+            if (!domain) {
+                alert('Please enter a domain name to search');
+                return;
+            }
+            
+            // Clear previous results
+            searchResults.innerHTML = '';
+            
+            // Check domain format
+            if (!domain.includes('.')) {
+                alert('Please include a domain extension (e.g., .com, .co.ke)');
+                return;
+            }
+            
+            // Check domain availability (use our simulated database)
+            const isAvailable = checkDomainAvailability(domain);
+            const domainParts = domain.split('.');
+            const tld = '.' + domainParts[domainParts.length - 1];
+            const domainName = domainParts.slice(0, -1).join('.');
+            
+            // Display results
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'domain-result';
+            
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `domain-status ${isAvailable ? 'available' : 'taken'}`;
+            
+            const icon = document.createElement('i');
+            icon.className = isAvailable ? 'fas fa-check-circle' : 'fas fa-times-circle';
+            
+            const statusText = document.createElement('span');
+            statusText.textContent = isAvailable 
+                ? `${domain} is available!` 
+                : `${domain} is already registered`;
+            
+            statusDiv.appendChild(icon);
+            statusDiv.appendChild(statusText);
+            resultDiv.appendChild(statusDiv);
+            
+            if (isAvailable) {
+                const price = getDomainPrice(tld);
+                const priceText = document.createElement('div');
+                priceText.className = 'domain-price';
+                priceText.textContent = price;
+                
+                resultDiv.appendChild(priceText);
+                
+                if (isLoggedIn) {
+                    const purchaseBtn = document.createElement('button');
+                    purchaseBtn.className = 'purchase-btn';
+                    purchaseBtn.textContent = 'Purchase Domain';
+                    purchaseBtn.onclick = function() {
+                        window.location.href = 'web.html';
+                    };
+                    resultDiv.appendChild(purchaseBtn);
+                } else {
+                    const loginBtn = document.createElement('button');
+                    loginBtn.className = 'login-to-purchase';
+                    loginBtn.textContent = 'Login to Purchase';
+                    loginBtn.onclick = function() {
+                        switchTab('login');
+                    };
+                    resultDiv.appendChild(loginBtn);
+                }
+            }
+            
+            searchResults.appendChild(resultDiv);
+            searchResults.classList.add('active');
+        });
+        
+        // Check domain availability (simulating real check)
+        function checkDomainAvailability(domain) {
+            // First check our "database"
+            if (domainAvailability.hasOwnProperty(domain)) {
+                return domainAvailability[domain];
+            }
+            
+            // For demo purposes, we'll consider domains with these patterns as taken
+            const commonTakenPatterns = [
+                /^facebook/i,
+                /^google/i,
+                /^twitter/i,
+                /^instagram/i,
+                /^youtube/i,
+                /^netflix/i,
+                /^amazon/i,
+                /^microsoft/i
+            ];
+            
+            // Check if domain matches any common taken patterns
+            for (const pattern of commonTakenPatterns) {
+                if (pattern.test(domain)) {
+                    domainAvailability[domain] = false;
+                    return false;
+                }
+            }
+            
+            // Otherwise consider it available
+            domainAvailability[domain] = true;
+            return true;
+        }
+        
+        // Get domain price based on TLD
+        function getDomainPrice(tld) {
+            const prices = {
+                '.co.ke': 'KSh 1,200/yr',
+                '.com': 'KSh 1,800/yr',
+                '.org': 'KSh 2,000/yr',
+                '.net': 'KSh 1,900/yr',
+                '.info': 'KSh 2,200/yr',
+                '.biz': 'KSh 2,100/yr',
+                '.me': 'KSh 2,300/yr',
+                '.ac.ke': 'KSh 2,500/yr',
+                '.go.ke': 'KSh 3,000/yr',
+                '.sc.ke': 'KSh 2,800/yr',
+                '.or.ke': 'KSh 2,700/yr',
+                '.ne.ke': 'KSh 2,600/yr'
+            };
+            
+            return prices[tld] || 'KSh 2,000/yr';
+        }
+        
+        // Sign up functionality
+        signupBtn.addEventListener('click', function() {
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm').value;
+            
+            // Simple validation
+            if (!email || !password || !confirmPassword) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            // In a real app, you would send this to your server
+            console.log('Account created:', {
+                email: email,
+                phone: document.getElementById('signup-phone').value,
+                gender: document.getElementById('signup-gender').value,
+                company: document.getElementById('signup-company').value,
+                purpose: document.getElementById('signup-purpose').value
+            });
+            
+            // Show success and switch to login
+            createdAccount = true;
+            switchTab('login');
+            
+            // Clear form
+            document.getElementById('signup-form').reset();
+        });
+        
+        // Login functionality
+        loginBtn.addEventListener('click', function() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            // Simulate successful login
+            isLoggedIn = true;
+            window.location.href = 'web.html';
+        });
+        // Add this function to check real domain availability
+async function checkRealDomainAvailability(domain) {
+    const apiKey = 'YOUR_WHOIS_API_KEY'; // Get from whoisxmlapi.com
+    const url = `https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=${apiKey}&domainName=${domain}&outputFormat=JSON`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        // Check WHOIS response for availability
+        if (data.WhoisRecord) {
+            // Domain is registered if these fields exist
+            return !(data.WhoisRecord.registryData || 
+                   data.WhoisRecord.registrant || 
+                   data.WhoisRecord.domainName);
+        }
+        return true;
+    } catch (error) {
+        console.error("WHOIS check failed:", error);
+        return false; // Fail safely
+    }
+}
+
+// Modified search function
+searchDomainBtn.addEventListener('click', async function() {
+    const domain = domainSearchInput.value.trim().toLowerCase();
+    
+    if (!domain) {
+        alert('Please enter a domain name');
+        return;
+    }
+
+    // Show loading state
+    searchResults.innerHTML = '<div class="loading">Checking availability...</div>';
+    
+    // Check both our cache and real WHOIS
+    const isAvailable = await checkRealDomainAvailability(domain);
+    
+    // Update UI
+    updateDomainResultUI(domain, isAvailable);
+});
+
+function updateDomainResultUI(domain, isAvailable) {
+    searchResults.innerHTML = '';
+    
+    const resultDiv = document.createElement('div');
+    resultDiv.className = 'domain-result';
+    
+    const statusDiv = document.createElement('div');
+    statusDiv.className = `domain-status ${isAvailable ? 'available' : 'taken'}`;
+    
+    const icon = document.createElement('i');
+    icon.className = isAvailable ? 'fas fa-check-circle' : 'fas fa-times-circle';
+    
+    const statusText = document.createElement('span');
+    statusText.textContent = isAvailable 
+        ? `${domain} is available!` 
+        : `${domain} is already registered`;
+    
+    statusDiv.appendChild(icon);
+    statusDiv.appendChild(statusText);
+    resultDiv.appendChild(statusDiv);
+    
+    if (isAvailable) {
+        const tld = '.' + domain.split('.')[1];
+        const price = getDomainPrice(tld);
+        
+        const priceText = document.createElement('div');
+        priceText.className = 'domain-price';
+        priceText.textContent = price;
+        resultDiv.appendChild(priceText);
+        
+        if (isLoggedIn) {
+            const purchaseBtn = document.createElement('button');
+            purchaseBtn.className = 'purchase-btn';
+            purchaseBtn.textContent = 'Purchase Domain';
+            purchaseBtn.onclick = () => window.location.href = 'web.html';
+            resultDiv.appendChild(purchaseBtn);
+        } else {
+            const loginBtn = document.createElement('button');
+            loginBtn.className = 'login-to-purchase';
+            loginBtn.textContent = 'Login to Purchase';
+            loginBtn.onclick = () => switchTab('login');
+            resultDiv.appendChild(loginBtn);
+        }
+    }
+    
+    searchResults.appendChild(resultDiv);
+    searchResults.classList.add('active');
+}
+    </script>
+    
+</section>
 
 <style>
 /* ======= Services Section Styles ======= */
@@ -2142,6 +3012,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </section>
+
 
 <style>
 /* ======= Case Studies Section Styles ======= */
@@ -3161,11 +4032,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     <!-- End Team Section -->
-
-
-    
-
-    
     
     
     <!-- ======= Premium Contact Section ======= -->
