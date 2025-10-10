@@ -40,292 +40,8 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
-    <style>
-        /* Cookie Consent Banner Styles */
-        #cookie-consent-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 9999;
-            display: none;
-        }
-        
-        .cookie-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-        }
-        
-        .cookie-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .cookie-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .cookie-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        #accept-cookies {
-            background: #25D366;
-            color: white;
-        }
-        
-        #accept-cookies:hover {
-            background: #128C7E;
-        }
-        
-        #reject-cookies {
-            background: #e74c3c;
-            color: white;
-        }
-        
-        #reject-cookies:hover {
-            background: #c0392b;
-        }
-        
-        #cookie-settings {
-            background: #3498db;
-            color: white;
-        }
-        
-        #cookie-settings:hover {
-            background: #2980b9;
-        }
-        
-        .cookie-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 9998;
-            display: none;
-        }
-        
-        .cookie-settings-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            z-index: 9999;
-            max-width: 600px;
-            width: 90%;
-            display: none;
-        }
-        
-        .cookie-settings-modal h3 {
-            color: #25D366;
-            margin-bottom: 20px;
-        }
-        
-        .cookie-category {
-            margin-bottom: 20px;
-        }
-        
-        .cookie-category label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .cookie-category input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
-        }
-    </style>
-</head>
 <body>
 
-
-    <!-- Cookie Consent Banner -->
-    <div id="cookie-consent-banner">
-        <div class="cookie-container">
-            <div class="cookie-text">
-                <p>We use cookies to enhance your experience on our website. By clicking "Accept All", you consent to our use of all cookies. You can manage your preferences in "Cookie Settings".</p>
-            </div>
-            <div class="cookie-actions">
-                <button id="accept-cookies" class="cookie-btn">Accept All</button>
-                <button id="reject-cookies" class="cookie-btn">Reject All</button>
-                <button id="cookie-settings" class="cookie-btn">Cookie Settings</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cookie Settings Modal -->
-    <div class="cookie-overlay" id="cookie-overlay"></div>
-    <div class="cookie-settings-modal" id="cookie-settings-modal">
-        <h3>Cookie Preferences</h3>
-        <p>Manage your cookie preferences below. You can change these settings at any time.</p>
-        
-        <div class="cookie-category">
-            <label>
-                <input type="checkbox" id="essential-cookies" checked disabled>
-                <strong>Essential Cookies</strong>
-                <span>(Always Active)</span>
-            </label>
-            <p>Necessary for the website to function and cannot be switched off.</p>
-        </div>
-        
-        <div class="cookie-category">
-            <label>
-                <input type="checkbox" id="analytics-cookies" checked>
-                <strong>Analytics Cookies</strong>
-            </label>
-            <p>Allow us to analyze website traffic and improve your experience.</p>
-        </div>
-        
-        <div class="cookie-category">
-            <label>
-                <input type="checkbox" id="marketing-cookies">
-                <strong>Marketing Cookies</strong>
-            </label>
-            <p>Used to track visitors across websites for advertising purposes.</p>
-        </div>
-        
-        <div class="modal-actions">
-            <button id="save-settings" class="cookie-btn" style="background: #25D366; color: white;">Save Preferences</button>
-            <button id="close-settings" class="cookie-btn" style="background: #95a5a6; color: white;">Close</button>
-        </div>
-    </div>
-
-    <!-- JavaScript for Cookie Consent -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cookieBanner = document.getElementById('cookie-consent-banner');
-            const acceptBtn = document.getElementById('accept-cookies');
-            const rejectBtn = document.getElementById('reject-cookies');
-            const settingsBtn = document.getElementById('cookie-settings');
-            const cookieOverlay = document.getElementById('cookie-overlay');
-            const cookieModal = document.getElementById('cookie-settings-modal');
-            const saveSettingsBtn = document.getElementById('save-settings');
-            const closeSettingsBtn = document.getElementById('close-settings');
-            
-            // Check if user has already made a choice
-            if (!getCookie('cookie_consent')) {
-                // Show banner after 1 second
-                setTimeout(() => {
-                    cookieBanner.style.display = 'block';
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling
-                }, 1000);
-            }
-            
-            // Accept all cookies
-            acceptBtn.addEventListener('click', function() {
-                setCookie('cookie_consent', 'all', 365);
-                setCookie('analytics_cookies', 'true', 365);
-                setCookie('marketing_cookies', 'true', 365);
-                cookieBanner.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                // Initialize analytics/marketing scripts here
-                console.log('All cookies accepted');
-            });
-            
-            // Reject all cookies (only essential)
-            rejectBtn.addEventListener('click', function() {
-                setCookie('cookie_consent', 'essential', 365);
-                setCookie('analytics_cookies', 'false', 365);
-                setCookie('marketing_cookies', 'false', 365);
-                cookieBanner.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                console.log('Only essential cookies accepted');
-            });
-            
-            // Open settings modal
-            settingsBtn.addEventListener('click', function() {
-                cookieOverlay.style.display = 'block';
-                cookieModal.style.display = 'block';
-            });
-            
-            // Close settings modal
-            closeSettingsBtn.addEventListener('click', closeModal);
-            cookieOverlay.addEventListener('click', closeModal);
-            
-            // Save settings
-            saveSettingsBtn.addEventListener('click', function() {
-                const analytics = document.getElementById('analytics-cookies').checked;
-                const marketing = document.getElementById('marketing-cookies').checked;
-                
-                setCookie('cookie_consent', 'custom', 365);
-                setCookie('analytics_cookies', analytics.toString(), 365);
-                setCookie('marketing_cookies', marketing.toString(), 365);
-                
-                closeModal();
-                cookieBanner.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                
-                console.log('Custom preferences saved:');
-                console.log('Analytics:', analytics);
-                console.log('Marketing:', marketing);
-                
-                // Initialize scripts based on preferences
-                if (analytics) {
-                    // Load analytics scripts
-                }
-                if (marketing) {
-                    // Load marketing scripts
-                }
-            });
-            
-            function closeModal() {
-                cookieOverlay.style.display = 'none';
-                cookieModal.style.display = 'none';
-            }
-            
-            // Cookie helper functions
-            function setCookie(name, value, days) {
-                const date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                const expires = "expires=" + date.toUTCString();
-                document.cookie = name + "=" + value + ";" + expires + ";path=/";
-            }
-            
-            function getCookie(name) {
-                const cookieName = name + "=";
-                const decodedCookie = decodeURIComponent(document.cookie);
-                const cookieArray = decodedCookie.split(';');
-                for(let i = 0; i < cookieArray.length; i++) {
-                    let cookie = cookieArray[i];
-                    while (cookie.charAt(0) == ' ') {
-                        cookie = cookie.substring(1);
-                    }
-                    if (cookie.indexOf(cookieName) == 0) {
-                        return cookie.substring(cookieName.length, cookie.length);
-                    }
-                }
-                return "";
-            }
-        });
-    </script>
-</body>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
@@ -350,7 +66,6 @@
           <li><a class="nav-link scrollto" href="#case-studies">Case-Studies</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="#hosting-section">Register Domain</a></li>
           <li><a class="getstarted scrollto" href="#contact">Free Consultation</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -358,76 +73,419 @@
 
     </div>
   </header><!-- End Header -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Hero Section Styles */
+        #hero {
+            position: relative;
+            padding: 100px 0;
+            color: #fff;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <!-- Background Video -->
-  <div class="video-background">
-    <video autoplay muted loop playsinline>
-      <source src="assets/img/video.mp4" type="video/mp4">
-    </video>
-    <div class="video-overlay"></div>
-  </div>
-  <style>
-    .hero {
-  position: relative;
-  padding: 100px 0;
-  color: #fff;
-  overflow: hidden;
-}
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-.video-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.video-background video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 0;
-}
-
-
-  </style>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>We Provide Better Solutions For Your Business</h1>
-          <h2>We are a team of passionate innovators dedicated to transforming your business with cutting-edge technology and tailored solutions</h2>
-          <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="tel:+254112293409" class="btn-get-started scrollto" style="font-size: 1.5rem;">
-  <i class="fas fa-phone-alt fa-shake" style="--fa-animation-duration: 2s; font-size: 2em; margin-right: 12px; vertical-align: middle;"></i>
-  <span style="font-size: 1.2em; vertical-align: middle;">
-    Contact Customer Care<br>
-    <strong style="font-size: 1.5em;"></strong>
-  </span>
-</a>
-          </div>
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        #hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .quote-btn {
+            background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
+        }
+        
+        .quote-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(13, 71, 161, 0.4);
+            color: white;
+        }
+        
+        .quote-btn i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        /* Quote Form Modal */
+        .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 150, 0.2);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 25px 30px;
+            border-bottom: none;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5ee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.4);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+        
+        .btn-submit i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5ee;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+        
+        .hero-img {
+            text-align: center;
+        }
+        
+        .hero-img img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 992px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            #hero h2 {
+                font-size: 1.3rem;
+            }
+            
+            .hero-img {
+                margin-top: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2rem;
+            }
+            
+            #hero h2 {
+                font-size: 1.1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <!-- Background Video -->
+        <div class="video-background">
+            <video autoplay muted loop playsinline>
+                <source src="assets/img/video.mp4" type="video/mp4">
+                <!-- Fallback image if video doesn't load -->
+                <img src="assets/img/hero-bg.jpg" alt="Hero Background" style="width: 100%; height: 100%; object-fit: cover;">
+            </video>
+            <div class="video-overlay"></div>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+
+        <div class="container">
+            <div class="row hero-content">
+                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                    <h1>We Provide Better Solutions For Your Business</h1>
+                    <h2>We are a team of passionate innovators dedicated to transforming your business with cutting-edge technology and tailored solutions</h2>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="#" class="quote-btn" data-bs-toggle="modal" data-bs-target="#quoteModal">
+                            <i class="fas fa-file-alt"></i> Get a Free Quote
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="assets/img/hero-img.png" class="img-fluid animated" alt="Business Solutions">
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+    <!-- End Hero -->
+
+    <!-- Quote Request Modal -->
+    <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quoteModalLabel">Get a Free Quote</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="quoteForm" action="https://formspree.io/f/xknekeno" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details <span class="required">*</span></label>
+                            <textarea id="message" name="message" required placeholder="Please describe your project or what you need a quote for"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Submit Quote Request
+                        </button>
+                    </form>
+                    
+                    <div id="successMessage" class="success-message">
+                        <i class="fas fa-check-circle"></i> Thank you! Your quote request has been submitted successfully. We'll get back to you soon.
+                    </div>
+                    
+                    <div id="errorMessage" class="error-message">
+                        <i class="fas fa-exclamation-circle"></i> There was an error submitting your request. Please try again.
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>Email Us<br>worldwaysonedevelopers@gmail.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <p>Call Us<br>+254 112 293 409</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-  </section>
-  
-  <!-- End Hero -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Form submission handling
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            
+            // Show loading state
+            const submitBtn = document.querySelector('.btn-submit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+            
+            // Submit to Formspree
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    document.getElementById('quoteForm').reset();
+                    
+                    // Close modal after 3 seconds
+                    setTimeout(() => {
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('quoteModal'));
+                        modal.hide();
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                // Show error message
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+        
+        // Reset form when modal is closed
+        document.getElementById('quoteModal').addEventListener('hidden.bs.modal', function () {
+            document.getElementById('quoteForm').reset();
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+        });
+    </script>
 
   <main id="main">
 
@@ -913,680 +971,702 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 </section>
-
-    <!-- ======= About Us Section ======= -->
-    
-    <!-- ======= Premium About Section ======= -->
-<section id="about" class="about">
-  <div class="container" data-aos="fade-up">
-    <div class="section-title">
-      <h2>About<style>#about h2 { color: black; }</style> <span>Worldways Web-Developers</span></h2>
-      <div class="title-divider">
-        <div class="line"></div>
-        <div class="diamond"></div>
-        <div class="line"></div>
-      </div>
-      <p class="section-subtitle">Where innovation meets execution</p>
-    </div>
-
-    <div class="row gy-4 align-items-stretch">
-      <!-- Left Column -->
-      <div class="col-lg-6 d-flex flex-column justify-content-center">
-        <div class="about-content" data-aos="fade-right" data-aos-delay="100">
-          <h3 class="about-heading">Transforming Businesses Through <span>Technology</span></h3>
-          <div class="animated-text">
-            <p>At <strong>Worldways</strong>, we believe in the power of technology to transform businesses and drive success. We are a team of passionate innovators, problem-solvers, and tech enthusiasts committed to delivering exceptional solutions.</p>
-            
-            <div class="feature-boxes">
-              <div class="feature-box" data-aos="zoom-in" data-aos-delay="200">
-                <div class="feature-icon">
-                  <i class="ri-team-line"></i>
-                </div>
-                <div class="feature-content">
-                  <h4>Collaborative Partnership</h4>
-                  <p>We don't just deliver solutions—we build lasting partnerships that grow with your business.</p>
-                </div>
-              </div>
-              
-              <div class="feature-box" data-aos="zoom-in" data-aos-delay="300">
-                <div class="feature-icon">
-                  <i class="ri-lightbulb-flash-line"></i>
-                </div>
-                <div class="feature-content">
-                  <h4>Strategic Innovation</h4>
-                  <p>We craft customized strategies that align with your vision and drive measurable results.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="col-lg-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-        <div class="about-image-container">
-          <div class="image-wrapper">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
-                 alt="Our team working together" 
-                 class="img-fluid main-image">
-            <div class="image-overlay"></div>
-            <div class="stats-overlay">
-              <div class="stat-item">
-                <div class="stat-number" data-count="205">0</div>
-                <div class="stat-label">Projects<style></style></div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-number" data-count="200">0</div>
-                <div class="stat-label">Client Satisfaction</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-number" data-count="8">0</div>
-                <div class="stat-label">Team Members</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Core Values Section -->
-    <div class="row core-values" data-aos="fade-up" data-aos-delay="200">
-      <div class="col-12">
-        <h3 class="values-title">Our Core Values</h3>
-        <div class="values-container">
-          <div class="value-card">
-            <div class="value-icon innovation"></div>
-            <h4>Innovation</h4>
-            <p>Pushing boundaries to deliver cutting-edge solutions</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon integrity"></div>
-            <h4>Integrity</h4>
-            <p>Transparent and ethical in all we do</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon excellence"></div>
-            <h4>Excellence</h4>
-            <p>Relentless pursuit of quality in every detail</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon partnership"></div>
-            <h4>Partnership</h4>
-            <p>Your success is our success</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA Section -->
-    <div class="cta-section" data-aos="fade-up" data-aos-delay="300">
-      <div class="cta-content">
-        <h3>Ready to transform your business?</h3>
-        <p>Let's discuss how we can help you achieve your goals</p>
-        <div class="cta-buttons">
-          <a href="#contact" class="btn-primary">Get Started</a>
-          <a href="#team" class="btn-secondary">Meet Our Team</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-/* ======= About Section Styles ======= */
-.about {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.about::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
-  z-index: 0;
-}
-
-.about .container {
-  position: relative;
-  z-index: 1;
-}
-
-.section-title h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-.section-title h2 span {
-  color: #3498db;
-  position: relative;
-}
-
-.section-title h2 span::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #3498db, #2ecc71);
-  border-radius: 3px;
-}
-
-.title-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.title-divider .line {
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #3498db);
-}
-
-.title-divider .diamond {
-  width: 12px;
-  height: 12px;
-  background: #3498db;
-  transform: rotate(45deg);
-  margin: 0 15px;
-}
-
-.title-divider .line:last-child {
-  background: linear-gradient(90deg, #3498db, transparent);
-}
-
-.section-subtitle {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #7f8c8d;
-  margin-bottom: 40px;
-  font-weight: 300;
-  letter-spacing: 1px;
-}
-
-.about-heading {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: #2c3e50;
-  line-height: 1.3;
-}
-
-.about-heading span {
-  color: #3498db;
-  position: relative;
-}
-
-.about-content p {
-  color: #34495e;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  font-size: 1.05rem;
-}
-
-.about-content p strong {
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-/* Feature Boxes */
-.feature-boxes {
-  margin-top: 30px;
-}
-
-.feature-box {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 25px;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.feature-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.feature-icon {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #3498db, #2ecc71);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 20px;
-  flex-shrink: 0;
-  font-size: 1.5rem;
-}
-
-.feature-content h4 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 8px;
-}
-
-.feature-content p {
-  color: #7f8c8d;
-  margin-bottom: 0;
-  font-size: 0.95rem;
-}
-
-/* Image Container */
-.about-image-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 400px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.main-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(46, 204, 113, 0.3));
-}
-
-.stats-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.9);
-  display: flex;
-  justify-content: space-around;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #3498db;
-  margin-bottom: 5px;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: #7f8c8d;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* Core Values */
-.core-values {
-  margin-top: 80px;
-}
-
-.values-title {
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.values-title::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, #3498db, #2ecc71);
-  border-radius: 3px;
-}
-
-.values-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.value-card {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.value-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.value-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: white;
-  position: relative;
-}
-
-.value-icon::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: conic-gradient(from 90deg, var(--color1), var(--color2));
-  opacity: 0.8;
-  z-index: 0;
-}
-
-.value-icon i {
-  position: relative;
-  z-index: 1;
-}
-
-.value-icon.innovation {
-  --color1: #3498db;
-  --color2: #9b59b6;
-}
-
-.value-icon.integrity {
-  --color1: #2ecc71;
-  --color2: #f1c40f;
-}
-
-.value-icon.excellence {
-  --color1: #e74c3c;
-  --color2: #3498db;
-}
-
-.value-icon.partnership {
-  --color1: #f39c12;
-  --color2: #e74c3c;
-}
-
-.value-card h4 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-.value-card p {
-  color: #7f8c8d;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* CTA Section */
-.cta-section {
-  margin-top: 80px;
-  background: linear-gradient(135deg, #3498db, #2ecc71);
-  padding: 60px;
-  border-radius: 15px;
-  text-align: center;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-  animation: pulse 8s infinite linear;
-}
-
-@keyframes pulse {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.cta-content {
-  position: relative;
-  z-index: 1;
-}
-
-.cta-section h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.cta-section p {
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  opacity: 0.9;
-}
-
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.btn-primary, .btn-secondary {
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.btn-primary {
-  background: white;
-  color: #3498db;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  color: #2980b9;
-}
-
-.btn-secondary {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-3px);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 992px) {
-  .about {
-    padding: 80px 0;
-  }
-  
-  .about-image-container {
-    min-height: 350px;
-    margin-top: 40px;
-  }
-  
-  .stats-overlay {
-    padding: 20px;
-  }
-  
-  .stat-number {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-title h2 {
-    font-size: 2rem;
-  }
-  
-  .about-heading {
-    font-size: 1.6rem;
-  }
-  
-  .feature-box {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .feature-icon {
-    margin-right: 0;
-    margin-bottom: 15px;
-  }
-  
-  .cta-section {
-    padding: 40px 20px;
-  }
-  
-  .cta-buttons {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .btn-primary, .btn-secondary {
-    width: 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  .about {
-    padding: 60px 0;
-  }
-  
-  .values-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .stats-overlay {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Animate stats counting
-  const statNumbers = document.querySelectorAll('.stat-number');
-  
-  const animateStats = () => {
-    statNumbers.forEach(stat => {
-      const target = parseInt(stat.getAttribute('data-count'));
-      const duration = 2000;
-      const start = 0;
-      const increment = target / (duration / 16);
-      let current = start;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          clearInterval(timer);
-          current = target;
+    <style>
+        /* ======= Professional About Section ======= */
+        .about {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
         }
-        stat.textContent = Math.floor(current);
-      }, 16);
-    });
-  };
-  
-  // Intersection Observer for stats animation
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateStats();
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  document.querySelector('.stats-overlay') && statsObserver.observe(document.querySelector('.stats-overlay'));
 
-  // Smooth scroll for CTA buttons
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
-      
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(2, 117, 216, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(91, 192, 222, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .about .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, #0275d8, #1a365d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #5a6c7d;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Mission Excellence */
+        .mission-excellence {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(2, 117, 216, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-excellence::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+        }
+
+        .mission-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .mission-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            border-radius: 3px;
+        }
+
+        .mission-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 0;
+        }
+
+        /* Content Section */
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        .content-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .content-heading span {
+            background: linear-gradient(135deg, #0275d8, #1a365d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 25px;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(2, 117, 216, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 20px rgba(2, 117, 216, 0.2);
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: #5a6c7d;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #0275d8, #1a365d);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Values Section */
+        .values-section {
+            margin-bottom: 80px;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .values-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 20px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .value-item {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(2, 117, 216, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .value-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(2, 117, 216, 0.3);
+        }
+
+        .value-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 15px;
+        }
+
+        .value-description {
+            color: #5a6c7d;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a365d, #0275d8);
+            border-radius: 20px;
+            padding: 80px 60px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0275d8;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
+            color: #025aa5;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-heading {
+                font-size: 2rem;
+            }
+            
+            .mission-excellence {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section {
+                padding: 60px 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ======= Professional About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-badge">About Our Company</div>
+                <h1 class="section-title">Driving Digital Excellence for <span>Global Businesses</span></h1>
+                <p class="section-subtitle">Worldways combines technical mastery with strategic insight to deliver transformative digital solutions that drive measurable business outcomes.</p>
+            </div>
+
+            <!-- Mission Excellence -->
+            <div class="mission-excellence" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="mission-title">Our Strategic Mission</h2>
+                <p class="mission-text">To architect digital solutions that not only meet today's business challenges but anticipate tomorrow's opportunities, creating sustainable competitive advantages through innovative technology and strategic partnership.</p>
+            </div>
+
+            <!-- Main Content -->
+            <div class="content-section">
+                <div class="row align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h2 class="content-heading">Strategic Technology <span>Partnership</span></h2>
+                        <p class="content-text">At Worldways, we transcend traditional client-vendor relationships to become strategic technology partners. Our approach integrates deep industry knowledge with cutting-edge technical expertise to deliver solutions that drive tangible business value.</p>
+                        <p class="content-text">We believe that exceptional technology should be invisible—seamlessly enabling business processes while delivering measurable ROI and competitive differentiation.</p>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chess-queen"></i>
+                                </div>
+                                <h3 class="feature-title">Strategic Vision</h3>
+                                <p class="feature-description">Aligning technology initiatives with long-term business objectives and market positioning.</p>
+                            </div>
+                            <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-network"></i>
+                                </div>
+                                <h3 class="feature-title">Enterprise Architecture</h3>
+                                <p class="feature-description">Designing scalable, secure technology foundations that support business growth and evolution.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="stats-section">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number" data-count="247">0</div>
+                                    <div class="stat-label">Enterprise Projects</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-count="99">0</div>
+                                    <div class="stat-label">Client Retention %</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-count="15">0</div>
+                                    <div class="stat-label">Industry Experts</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" data-count="10">0</div>
+                                    <div class="stat-label">Years Excellence</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Values Section -->
+            <div class="values-section" data-aos="fade-up">
+                <div class="values-header">
+                    <h2 class="values-title">Our Guiding Principles</h2>
+                    <p class="section-subtitle">The foundation of our partnership approach and delivery excellence</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="value-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="value-name">Precision Execution</h3>
+                        <p class="value-description">Meticulous attention to detail and flawless delivery of complex technology initiatives on time and within budget.</p>
+                    </div>
+                    <div class="value-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="value-name">Client Partnership</h3>
+                        <p class="value-description">Building long-term relationships based on trust, transparency, and shared success metrics.</p>
+                    </div>
+                    <div class="value-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="value-name">Innovation Leadership</h3>
+                        <p class="value-description">Continuously advancing our capabilities and exploring emerging technologies to maintain competitive edge.</p>
+                    </div>
+                    <div class="value-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="value-name">Enterprise Security</h3>
+                        <p class="value-description">Implementing robust security frameworks and compliance measures to protect business assets and data.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section" data-aos="fade-up">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Transform Your Digital Strategy?</h2>
+                    <p class="cta-subtitle">Partner with Worldways to architect technology solutions that drive growth, efficiency, and competitive advantage.</p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Schedule Consultation
+                        </a>
+                        <a href="#portfolio" class="btn-secondary">
+                            <i class="fas fa-briefcase"></i>
+                            View Case Studies
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false
+            });
+
+            // Animate stats counting
+            const animateStats = () => {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-count'));
+                    const duration = 2500;
+                    const start = 0;
+                    const increment = target / (duration / 16);
+                    let current = start;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clearInterval(timer);
+                            current = target;
+                        }
+                        stat.textContent = Math.floor(current);
+                    }, 16);
+                });
+            };
+
+            // Intersection Observer for stats animation
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+
+            // Smooth scroll for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
-      }
-    });
-  });
+    </script>
   
-  // Initialize AOS animations if library is loaded
-  if (typeof AOS !== 'undefined') {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-  }
-});
-</script>
-    
-    <!-- End About Us Section -->
-
 
     <!-- ======= Services Section ======= -->
-    
-    
-    <!-- ======= Premium Services Section ======= -->
 <section id="services" class="services">
   <!-- Background Video -->
   <div class="video-background">
@@ -1778,875 +1858,6 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
   </div>
-</section>
-
-<section
- id="hosting-section" class="hosting-section">
-
-<!---------------------- web hosting section starts here------------------------>
-    <style>
-        :root {
-            --primary-color: #0a1f3d;
-            --secondary-color: #1a3a6a;
-            --accent-color: #3a7bd5;
-            --text-color: #ffffff;
-            --light-text: #e0e0e0;
-            --success-color: #4CAF50;
-            --error-color: #f44336;
-            --warning-color: #FFC107;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        
-        .hosting-section {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            padding: 60px 20px;
-            border-radius: 10px;
-            margin: 30px auto;
-            max-width: 1200px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hosting-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .hosting-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, var(--accent-color), #00d2ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hosting-header p {
-            font-size: 1.1rem;
-            color: var(--light-text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .hosting-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 30px;
-        }
-        
-        .domain-search {
-            flex: 1;
-            min-width: 300px;
-            background-color: var(--secondary-color);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .domain-search h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-        }
-        
-        .search-box {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        
-        .search-box input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 4px 0 0 4px;
-            font-size: 1rem;
-        }
-        
-        .search-box button {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .search-box button:hover {
-            background-color: #2a6bc5;
-        }
-        
-        .search-results {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 4px;
-            display: none;
-        }
-        
-        .search-results.active {
-            display: block;
-        }
-        
-        .domain-result {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .domain-result:last-child {
-            border-bottom: none;
-        }
-        
-        .domain-status {
-            display: flex;
-            align-items: center;
-        }
-        
-        .domain-status.available {
-            color: var(--success-color);
-        }
-        
-        .domain-status.taken {
-            color: var(--error-color);
-        }
-        
-        .domain-status i {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-        
-        .purchase-btn {
-            background-color: var(--success-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            display: none;
-        }
-        
-        .purchase-btn:hover {
-            background-color: #3e8e41;
-        }
-        
-        .login-to-purchase {
-            background-color: var(--warning-color);
-            color: #333;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .login-to-purchase:hover {
-            background-color: #e0a800;
-        }
-        
-        .tld-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .tld-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .tld-item:hover {
-            background-color: var(--accent-color);
-        }
-        
-        .popular-tlds {
-            margin-top: 30px;
-        }
-        
-        .popular-tlds h4 {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .auth-options {
-            flex: 1;
-            min-width: 300px;
-            background-color: var(--secondary-color);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .auth-options h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-        }
-        
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .auth-tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .auth-tab.active {
-            color: var(--accent-color);
-        }
-        
-        .auth-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--accent-color);
-        }
-        
-        .auth-form {
-            display: none;
-        }
-        
-        .auth-form.active {
-            display: block;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        
-        .form-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 25px;
-        }
-        
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #2a6bc5;
-        }
-        
-        .btn-link {
-            background: none;
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
-        
-        .btn-link:hover {
-            color: #2a6bc5;
-        }
-        
-        .forgot-password {
-            text-align: right;
-            margin-top: 10px;
-        }
-        
-        .forgot-password a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-        
-        .success-message {
-            display: none;
-            padding: 15px;
-            background-color: rgba(76, 175, 80, 0.2);
-            border: 1px solid var(--success-color);
-            border-radius: 4px;
-            margin-bottom: 20px;
-            color: var(--success-color);
-        }
-        
-        .success-message.active {
-            display: block;
-        }
-        
-        .domain-pricing {
-            margin-top: 40px;
-            width: 100%;
-        }
-        
-        .domain-pricing h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-        }
-        
-        .pricing-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: var(--secondary-color);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .pricing-table th, .pricing-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .pricing-table th {
-            background-color: rgba(0, 0, 0, 0.2);
-            font-weight: bold;
-        }
-        
-        .pricing-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .price {
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-        
-        @media (max-width: 768px) {
-            .hosting-container {
-                flex-direction: column;
-            }
-            
-            .hosting-header h2 {
-                font-size: 2rem;
-            }
-            .loading {
-    padding: 15px;
-    text-align: center;
-    color: var(--accent-color);
-    font-style: italic;
-}
-        }
-    </style>
-        <div class="hosting-header">
-            <h2>Domain Registration Services</h2>
-            <p>Secure your perfect domain name with WorldWays Web-Developers. Register your .co.ke, .com, .org, or other TLDs today and establish your online presence.</p>
-        </div>
-        
-        <div class="hosting-container">
-            <div class="domain-search">
-                <h3>Find Your Perfect Domain</h3>
-                <div class="search-box">
-                    <input type="text" id="domain-search-input" placeholder="Enter your desired domain name">
-                    <button id="search-domain-btn">Search</button>
-                </div>
-                
-                <div id="search-results" class="search-results">
-                    <!-- Results will be dynamically inserted here -->
-                </div>
-                
-                <div class="tld-list">
-                    <div class="tld-item">.co.ke</div>
-                    <div class="tld-item">.com</div>
-                    <div class="tld-item">.org</div>
-                    <div class="tld-item">.net</div>
-                    <div class="tld-item">.info</div>
-                    <div class="tld-item">.biz</div>
-                    <div class="tld-item">.me</div>
-                </div>
-                
-                <div class="popular-tlds">
-                    <h4>Kenya-Specific Domains:</h4>
-                    <div class="tld-list">
-                        <div class="tld-item">.ac.ke</div>
-                        <div class="tld-item">.go.ke</div>
-                        <div class="tld-item">.sc.ke</div>
-                        <div class="tld-item">.or.ke</div>
-                        <div class="tld-item">.ne.ke</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="auth-options">
-                <div class="auth-tabs">
-                    <div class="auth-tab active" onclick="switchTab('login')">Login</div>
-                    <div class="auth-tab" onclick="switchTab('signup')">Create Account</div>
-                </div>
-                
-                <div id="login-form" class="auth-form active">
-                    <div id="login-success" class="success-message">
-                        Account created successfully! You can now login.
-                    </div>
-                    <div class="form-group">
-                        <label for="login-email">Email Address</label>
-                        <input type="email" id="login-email" placeholder="your@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" id="login-password" placeholder="••••••••">
-                    </div>
-                    <div class="forgot-password">
-                        <a href="#" onclick="switchTab('forgot')">Forgot your password?</a>
-                    </div>
-                    <div class="form-actions">
-                        <button class="btn btn-primary" id="login-btn">Login</button>
-                    </div>
-                </div>
-                
-                <div id="signup-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="signup-email">Email Address</label>
-                        <input type="email" id="signup-email" placeholder="your@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-phone">Phone Number</label>
-                        <input type="tel" id="signup-phone" placeholder="+254 7XX XXX XXX">
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-gender">Gender</label>
-                        <select id="signup-gender">
-                            <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                            <option value="prefer-not-to-say">Prefer not to say</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-company">Company Name (Optional)</label>
-                        <input type="text" id="signup-company" placeholder="Your company name">
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-purpose">Purpose of Registration</label>
-                        <select id="signup-purpose">
-                            <option value="">Select Purpose</option>
-                            <option value="personal">Personal Website/Blog</option>
-                            <option value="business">Business Website</option>
-                            <option value="portfolio">Portfolio</option>
-                            <option value="ecommerce">E-commerce</option>
-                            <option value="organization">Organization/NGO</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-password">Create Password</label>
-                        <input type="password" id="signup-password" placeholder="••••••••">
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-confirm">Confirm Password</label>
-                        <input type="password" id="signup-confirm" placeholder="••••••••">
-                    </div>
-                    <div class="form-actions">
-                        <button class="btn btn-primary" id="signup-btn">Create Account</button>
-                    </div>
-                </div>
-                
-                <div id="forgot-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="forgot-email">Email Address</label>
-                        <input type="email" id="forgot-email" placeholder="your@email.com">
-                    </div>
-                    <p style="margin-bottom: 20px; color: var(--light-text); font-size: 0.9rem;">
-                        We'll send you a link to reset your password.
-                    </p>
-                    <div class="form-actions">
-                        <button class="btn btn-primary">Send Reset Link</button>
-                        <button class="btn btn-link" onclick="switchTab('login')">Back to Login</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Track login state
-        let isLoggedIn = false;
-        let createdAccount = false;
-        
-        // Store domain availability (simulating a database)
-        const domainAvailability = {
-            // Pre-populate with some taken domains
-            'google.com': false,
-            'facebook.com': false,
-            'twitter.com': false,
-            'example.co.ke': false,
-            'test.go.ke': false
-        };
-        
-        // DOM elements
-        const domainSearchInput = document.getElementById('domain-search-input');
-        const searchDomainBtn = document.getElementById('search-domain-btn');
-        const searchResults = document.getElementById('search-results');
-        const loginBtn = document.getElementById('login-btn');
-        const signupBtn = document.getElementById('signup-btn');
-        const loginSuccessMsg = document.getElementById('login-success');
-        
-        // Switch between auth tabs
-        function switchTab(tabName) {
-            // Hide all forms
-            document.querySelectorAll('.auth-form').forEach(form => {
-                form.classList.remove('active');
-            });
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('.auth-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected form and activate tab
-            if (tabName === 'login') {
-                document.getElementById('login-form').classList.add('active');
-                document.querySelectorAll('.auth-tab')[0].classList.add('active');
-                
-                // Show success message if account was just created
-                if (createdAccount) {
-                    loginSuccessMsg.classList.add('active');
-                    createdAccount = false;
-                }
-            } else if (tabName === 'signup') {
-                document.getElementById('signup-form').classList.add('active');
-                document.querySelectorAll('.auth-tab')[1].classList.add('active');
-                loginSuccessMsg.classList.remove('active');
-            } else if (tabName === 'forgot') {
-                document.getElementById('forgot-form').classList.add('active');
-            }
-        }
-        
-        // Add click event to TLD items to populate search box
-        document.querySelectorAll('.tld-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const currentValue = domainSearchInput.value.trim();
-                const tld = this.textContent;
-                
-                if (currentValue === '') {
-                    domainSearchInput.value = 'example' + tld;
-                } else {
-                    // Remove any existing TLD
-                    const baseName = currentValue.split('.')[0];
-                    domainSearchInput.value = baseName + tld;
-                }
-            });
-        });
-        
-        // Domain search functionality
-        searchDomainBtn.addEventListener('click', function() {
-            const domain = domainSearchInput.value.trim().toLowerCase();
-            
-            if (!domain) {
-                alert('Please enter a domain name to search');
-                return;
-            }
-            
-            // Clear previous results
-            searchResults.innerHTML = '';
-            
-            // Check domain format
-            if (!domain.includes('.')) {
-                alert('Please include a domain extension (e.g., .com, .co.ke)');
-                return;
-            }
-            
-            // Check domain availability (use our simulated database)
-            const isAvailable = checkDomainAvailability(domain);
-            const domainParts = domain.split('.');
-            const tld = '.' + domainParts[domainParts.length - 1];
-            const domainName = domainParts.slice(0, -1).join('.');
-            
-            // Display results
-            const resultDiv = document.createElement('div');
-            resultDiv.className = 'domain-result';
-            
-            const statusDiv = document.createElement('div');
-            statusDiv.className = `domain-status ${isAvailable ? 'available' : 'taken'}`;
-            
-            const icon = document.createElement('i');
-            icon.className = isAvailable ? 'fas fa-check-circle' : 'fas fa-times-circle';
-            
-            const statusText = document.createElement('span');
-            statusText.textContent = isAvailable 
-                ? `${domain} is available!` 
-                : `${domain} is already registered`;
-            
-            statusDiv.appendChild(icon);
-            statusDiv.appendChild(statusText);
-            resultDiv.appendChild(statusDiv);
-            
-            if (isAvailable) {
-                const price = getDomainPrice(tld);
-                const priceText = document.createElement('div');
-                priceText.className = 'domain-price';
-                priceText.textContent = price;
-                
-                resultDiv.appendChild(priceText);
-                
-                if (isLoggedIn) {
-                    const purchaseBtn = document.createElement('button');
-                    purchaseBtn.className = 'purchase-btn';
-                    purchaseBtn.textContent = 'Purchase Domain';
-                    purchaseBtn.onclick = function() {
-                        window.location.href = 'web.html';
-                    };
-                    resultDiv.appendChild(purchaseBtn);
-                } else {
-                    const loginBtn = document.createElement('button');
-                    loginBtn.className = 'login-to-purchase';
-                    loginBtn.textContent = 'Login to Purchase';
-                    loginBtn.onclick = function() {
-                        switchTab('login');
-                    };
-                    resultDiv.appendChild(loginBtn);
-                }
-            }
-            
-            searchResults.appendChild(resultDiv);
-            searchResults.classList.add('active');
-        });
-        
-        // Check domain availability (simulating real check)
-        function checkDomainAvailability(domain) {
-            // First check our "database"
-            if (domainAvailability.hasOwnProperty(domain)) {
-                return domainAvailability[domain];
-            }
-            
-            // For demo purposes, we'll consider domains with these patterns as taken
-            const commonTakenPatterns = [
-                /^facebook/i,
-                /^google/i,
-                /^twitter/i,
-                /^instagram/i,
-                /^youtube/i,
-                /^netflix/i,
-                /^amazon/i,
-                /^microsoft/i
-            ];
-            
-            // Check if domain matches any common taken patterns
-            for (const pattern of commonTakenPatterns) {
-                if (pattern.test(domain)) {
-                    domainAvailability[domain] = false;
-                    return false;
-                }
-            }
-            
-            // Otherwise consider it available
-            domainAvailability[domain] = true;
-            return true;
-        }
-        
-        // Get domain price based on TLD
-        function getDomainPrice(tld) {
-            const prices = {
-                '.co.ke': 'KSh 1,200/yr',
-                '.com': 'KSh 1,800/yr',
-                '.org': 'KSh 2,000/yr',
-                '.net': 'KSh 1,900/yr',
-                '.info': 'KSh 2,200/yr',
-                '.biz': 'KSh 2,100/yr',
-                '.me': 'KSh 2,300/yr',
-                '.ac.ke': 'KSh 2,500/yr',
-                '.go.ke': 'KSh 3,000/yr',
-                '.sc.ke': 'KSh 2,800/yr',
-                '.or.ke': 'KSh 2,700/yr',
-                '.ne.ke': 'KSh 2,600/yr'
-            };
-            
-            return prices[tld] || 'KSh 2,000/yr';
-        }
-        
-        // Sign up functionality
-        signupBtn.addEventListener('click', function() {
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('signup-confirm').value;
-            
-            // Simple validation
-            if (!email || !password || !confirmPassword) {
-                alert('Please fill in all required fields');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
-            
-            // In a real app, you would send this to your server
-            console.log('Account created:', {
-                email: email,
-                phone: document.getElementById('signup-phone').value,
-                gender: document.getElementById('signup-gender').value,
-                company: document.getElementById('signup-company').value,
-                purpose: document.getElementById('signup-purpose').value
-            });
-            
-            // Show success and switch to login
-            createdAccount = true;
-            switchTab('login');
-            
-            // Clear form
-            document.getElementById('signup-form').reset();
-        });
-        
-        // Login functionality
-        loginBtn.addEventListener('click', function() {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            if (!email || !password) {
-                alert('Please enter both email and password');
-                return;
-            }
-            
-            // Simulate successful login
-            isLoggedIn = true;
-            window.location.href = 'web.html';
-        });
-        // Add this function to check real domain availability
-async function checkRealDomainAvailability(domain) {
-    const apiKey = 'YOUR_WHOIS_API_KEY'; // Get from whoisxmlapi.com
-    const url = `https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=${apiKey}&domainName=${domain}&outputFormat=JSON`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        // Check WHOIS response for availability
-        if (data.WhoisRecord) {
-            // Domain is registered if these fields exist
-            return !(data.WhoisRecord.registryData || 
-                   data.WhoisRecord.registrant || 
-                   data.WhoisRecord.domainName);
-        }
-        return true;
-    } catch (error) {
-        console.error("WHOIS check failed:", error);
-        return false; // Fail safely
-    }
-}
-
-// Modified search function
-searchDomainBtn.addEventListener('click', async function() {
-    const domain = domainSearchInput.value.trim().toLowerCase();
-    
-    if (!domain) {
-        alert('Please enter a domain name');
-        return;
-    }
-
-    // Show loading state
-    searchResults.innerHTML = '<div class="loading">Checking availability...</div>';
-    
-    // Check both our cache and real WHOIS
-    const isAvailable = await checkRealDomainAvailability(domain);
-    
-    // Update UI
-    updateDomainResultUI(domain, isAvailable);
-});
-
-function updateDomainResultUI(domain, isAvailable) {
-    searchResults.innerHTML = '';
-    
-    const resultDiv = document.createElement('div');
-    resultDiv.className = 'domain-result';
-    
-    const statusDiv = document.createElement('div');
-    statusDiv.className = `domain-status ${isAvailable ? 'available' : 'taken'}`;
-    
-    const icon = document.createElement('i');
-    icon.className = isAvailable ? 'fas fa-check-circle' : 'fas fa-times-circle';
-    
-    const statusText = document.createElement('span');
-    statusText.textContent = isAvailable 
-        ? `${domain} is available!` 
-        : `${domain} is already registered`;
-    
-    statusDiv.appendChild(icon);
-    statusDiv.appendChild(statusText);
-    resultDiv.appendChild(statusDiv);
-    
-    if (isAvailable) {
-        const tld = '.' + domain.split('.')[1];
-        const price = getDomainPrice(tld);
-        
-        const priceText = document.createElement('div');
-        priceText.className = 'domain-price';
-        priceText.textContent = price;
-        resultDiv.appendChild(priceText);
-        
-        if (isLoggedIn) {
-            const purchaseBtn = document.createElement('button');
-            purchaseBtn.className = 'purchase-btn';
-            purchaseBtn.textContent = 'Purchase Domain';
-            purchaseBtn.onclick = () => window.location.href = 'web.html';
-            resultDiv.appendChild(purchaseBtn);
-        } else {
-            const loginBtn = document.createElement('button');
-            loginBtn.className = 'login-to-purchase';
-            loginBtn.textContent = 'Login to Purchase';
-            loginBtn.onclick = () => switchTab('login');
-            resultDiv.appendChild(loginBtn);
-        }
-    }
-    
-    searchResults.appendChild(resultDiv);
-    searchResults.classList.add('active');
-}
-    </script>
-    
 </section>
 
 <style>
@@ -2896,521 +2107,887 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-    
     <!-- End Services Section -->
-
-    
-    
-    <!-- ======= Why Us Section  ======= -->
     
     <!-- ======= Case Studies Section ======= -->
-<section id="case-studies" class="case-studies">
-  <!-- Gradient Background -->
-  <div class="background-gradient"></div>
-  
-  <!-- Floating Circles Decorations -->
-  <div class="floating-circles">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
-    <div class="circle circle-3"></div>
-    <div class="circle circle-4"></div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worldways Partners</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* ======= Partners Section Styles ======= */
+        .partners {
+            position: relative;
+            padding: 100px 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0c1a33 0%, #1a365d 50%, #0c1a33 100%);
+        }
 
-  <div class="container" data-aos="fade-up">
-    <div class="section-header">
-      <h2>Success <style>#case-studies h2 { color: white; }</style><span>Stories</span></h2>
-      <p class="section-subtitle">Explore how we've helped businesses transform and achieve remarkable results</p>
-    </div>
+        .background-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(2, 117, 216, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(91, 192, 222, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
 
-    <div class="row gy-4">
-      <!-- Case Study 1 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="case-study-card">
-          <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Digital Transformation Case Study">
-            <div class="case-study-badge">Digital Transformation</div>
-          </div>
-          <div class="case-study-content">
-            <h3>Retail Chain Modernization</h3>
-            <p>Helped a national retail chain implement cloud-based inventory management, reducing stock discrepancies by 72% and improving supply chain efficiency.</p>
-            <div class="case-study-stats">
-              <div class="stat-item">
-                <div class="stat-value">72%</div>
-                <div class="stat-label">Reduction in errors</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-value">3.5x</div>
-                <div class="stat-label">Faster reporting</div>
-              </div>
+        .floating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            right: -50px;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            top: 30%;
+            right: 10%;
+            animation: float 12s infinite ease-in-out;
+        }
+
+        .circle-4 {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 15%;
+            animation: float 10s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(20px);
+            }
+        }
+
+        .partners .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 span {
+            background: linear-gradient(135deg, #ffcc00, #ffd633);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-header h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ffcc00, transparent);
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Partners Carousel */
+        .partners-carousel-container {
+            position: relative;
+            margin: 60px 0;
+            overflow: hidden;
+        }
+
+        .partners-carousel {
+            display: flex;
+            animation: scroll 40s linear infinite;
+            gap: 60px;
+            padding: 20px 0;
+        }
+
+        .partners-carousel:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-250px * 6 - 60px * 6));
+            }
+        }
+
+        .partner-item {
+            flex: 0 0 250px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .partner-item:hover::before {
+            left: 100%;
+        }
+
+        .partner-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 204, 0, 0.3);
+        }
+
+        .partner-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-item:hover .partner-logo {
+            transform: scale(1.2) translateY(-10px);
+            box-shadow: 0 15px 35px rgba(255, 204, 0, 0.3);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            transition: transform 0.4s ease;
+        }
+
+        .partner-item:hover .partner-logo img {
+            transform: scale(1.1);
+        }
+
+        .partner-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .partner-item:hover .partner-name {
+            color: #ffcc00;
+        }
+
+        .partner-industry {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .partner-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .partner-item:hover .partner-details {
+            max-height: 100px;
+            margin-top: 10px;
+        }
+
+        .partner-stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .partner-item:hover .partner-stats {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .partner-stat {
+            text-align: center;
+        }
+
+        .partner-stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffcc00;
+            margin-bottom: 2px;
+        }
+
+        .partner-stat-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Partnership Types */
+        .partnership-types {
+            margin: 80px 0;
+        }
+
+        .types-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .type-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .type-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: rgba(255, 204, 0, 0.3);
+        }
+
+        .type-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #ffcc00, #ffd633);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #1a365d;
+        }
+
+        .type-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .type-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* CTA Section */
+        .partners-cta {
+            margin-top: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partners-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.1), rgba(2, 117, 216, 0.1));
+            z-index: -1;
+        }
+
+        .partners-cta h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .partners-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #ffcc00;
+            color: #1a1a1a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 204, 0, 0.4);
+            background: #ffd633;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .partners-carousel {
+                gap: 40px;
+            }
+            
+            .partner-item {
+                flex: 0 0 220px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .partners {
+                padding: 80px 0;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .partners-carousel {
+                gap: 30px;
+            }
+            
+            .partner-item {
+                flex: 0 0 200px;
+            }
+            
+            .types-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .partners-cta {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .partners-carousel {
+                gap: 20px;
+            }
+            
+            .partner-item {
+                flex: 0 0 180px;
+                padding: 20px 15px;
+            }
+            
+            .partner-logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .types-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .partners-cta {
+                padding: 30px 20px;
+            }
+            
+            .partners-cta h3 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .partners {
+                padding: 60px 0;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .partner-item {
+                flex: 0 0 160px;
+            }
+            
+            .partner-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .partner-name {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ======= Partners Section ======= -->
+    <section id="partners" class="partners">
+        <!-- Gradient Background -->
+        <div class="background-gradient"></div>
+        
+        <!-- Floating Circles Decorations -->
+        <div class="floating-circles">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+            <div class="circle circle-4"></div>
+        </div>
+
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Trusted <span>Partners</span></h2>
+                <p class="section-subtitle">We're proud to collaborate with industry leaders and innovative companies worldwide to deliver exceptional results</p>
             </div>
-            <a href="#" class="read-case-study">Read Full Story <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
 
-      <!-- Case Study 2 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="case-study-card">
-          <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cybersecurity Case Study">
-            <div class="case-study-badge">Cybersecurity</div>
-          </div>
-          <div class="case-study-content">
-            <h3>Financial Services Protection</h3>
-            <p>Implemented comprehensive security framework for a regional bank, preventing potential breaches and ensuring compliance with financial regulations.</p>
-            <div class="case-study-stats">
-              <div class="stat-item">
-                <div class="stat-value">100%</div>
-                <div class="stat-label">Compliance achieved</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-value">24/7</div>
-                <div class="stat-label">Threat monitoring</div>
-              </div>
+            <!-- Partners Carousel -->
+            <div class="partners-carousel-container">
+                <div class="partners-carousel">
+                    <!-- Partner 1 -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Microsoft">
+                        </div>
+                        <h3 class="partner-name">Microsoft</h3>
+                        <div class="partner-industry">Technology</div>
+                        <div class="partner-details">
+                            Global technology partnership for cloud solutions and enterprise software development.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">5+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">150+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner 2 -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/731/731985.png" alt="Amazon Web Services">
+                        </div>
+                        <h3 class="partner-name">AWS</h3>
+                        <div class="partner-industry">Cloud Services</div>
+                        <div class="partner-details">
+                            Strategic cloud infrastructure partnership for scalable and secure solutions.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">4+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">200+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner 3 -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Google">
+                        </div>
+                        <h3 class="partner-name">Google Cloud</h3>
+                        <div class="partner-industry">Technology</div>
+                        <div class="partner-details">
+                            Advanced AI and machine learning solutions partnership for innovative applications.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">3+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">85+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner 4 -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968885.png" alt="IBM">
+                        </div>
+                        <h3 class="partner-name">IBM</h3>
+                        <div class="partner-industry">Enterprise</div>
+                        <div class="partner-details">
+                            Enterprise solutions partnership focusing on AI and blockchain technologies.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">6+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">120+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner 5 -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968242.png" alt="Salesforce">
+                        </div>
+                        <h3 class="partner-name">Salesforce</h3>
+                        <div class="partner-industry">CRM</div>
+                        <div class="partner-details">
+                            CRM implementation and customization partnership for business growth.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">4+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">90+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner 6 -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/6132/6132221.png" alt="Oracle">
+                        </div>
+                        <h3 class="partner-name">Oracle</h3>
+                        <div class="partner-industry">Database</div>
+                        <div class="partner-details">
+                            Database solutions and enterprise software implementation partnership.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">5+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">110+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate for seamless loop -->
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Microsoft">
+                        </div>
+                        <h3 class="partner-name">Microsoft</h3>
+                        <div class="partner-industry">Technology</div>
+                        <div class="partner-details">
+                            Global technology partnership for cloud solutions and enterprise software development.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">5+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">150+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/731/731985.png" alt="Amazon Web Services">
+                        </div>
+                        <h3 class="partner-name">AWS</h3>
+                        <div class="partner-industry">Cloud Services</div>
+                        <div class="partner-details">
+                            Strategic cloud infrastructure partnership for scalable and secure solutions.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">4+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">200+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Google">
+                        </div>
+                        <h3 class="partner-name">Google Cloud</h3>
+                        <div class="partner-industry">Technology</div>
+                        <div class="partner-details">
+                            Advanced AI and machine learning solutions partnership for innovative applications.
+                        </div>
+                        <div class="partner-stats">
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">3+</div>
+                                <div class="partner-stat-label">Years</div>
+                            </div>
+                            <div class="partner-stat">
+                                <div class="partner-stat-value">85+</div>
+                                <div class="partner-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="#" class="read-case-study">Read Full Story <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
 
-      <!-- Case Study 3 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="case-study-card">
-          <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Custom Software Case Study">
-            <div class="case-study-badge">Custom Software</div>
-          </div>
-          <div class="case-study-content">
-            <h3>Manufacturing Process Automation</h3>
-            <p>Developed custom workflow automation for industrial manufacturer, reducing production bottlenecks and increasing output by 40%.</p>
-            <div class="case-study-stats">
-              <div class="stat-item">
-                <div class="stat-value">40%</div>
-                <div class="stat-label">Output increase</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-value">65%</div>
-                <div class="stat-label">Faster approvals</div>
-              </div>
+            <!-- Partnership Types -->
+            <div class="partnership-types" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="types-title">Our Partnership Models</h3>
+                <div class="types-grid">
+                    <div class="type-card">
+                        <div class="type-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4 class="type-name">Strategic Alliance</h4>
+                        <p class="type-description">Long-term collaboration for joint innovation and market development with shared goals and resources.</p>
+                    </div>
+                    <div class="type-card">
+                        <div class="type-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4 class="type-name">Technology Integration</h4>
+                        <p class="type-description">Seamless integration of partner technologies to enhance solution capabilities and deliver added value.</p>
+                    </div>
+                    <div class="type-card">
+                        <div class="type-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="type-name">Solution Development</h4>
+                        <p class="type-description">Co-development of innovative solutions that combine expertise from both organizations.</p>
+                    </div>
+                </div>
             </div>
-            <a href="#" class="read-case-study">Read Full Story <i class="fas fa-arrow-right"></i></a>
-          </div>
+
+            <!-- CTA Section -->
+            <div class="partners-cta" data-aos="fade-up" data-aos-delay="300">
+                <h3>Become Our Partner</h3>
+                <p>Join our network of industry leaders and innovative companies to create exceptional value together</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-handshake"></i>
+                        Partner With Us
+                    </a>
+                    <a href="#about" class="btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- CTA Section -->
-    <div class="case-studies-cta" data-aos="fade-up" data-aos-delay="400">
-      <div class="cta-content">
-        <h3>Ready to create your success story?</h3>
-        <p>Let's discuss how we can help your business achieve remarkable results</p>
-        <div class="cta-buttons">
-          <a href="#contact" class="btn-primary">Get Started</a>
-          <a href="#services" class="btn-secondary">Explore Services</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-in-out',
+                once: true
+            });
 
+            // Enhanced hover effects for partner items
+            const partnerItems = document.querySelectorAll('.partner-item');
+            partnerItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
 
-<style>
-/* ======= Case Studies Section Styles ======= */
-.case-studies {
-  position: relative;
-  padding: 100px 0;
-  overflow: hidden;
-}
+            // Smooth scroll for CTA buttons
+            document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
 
-.background-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
-  z-index: -2;
-}
+            // Pause animation when hovering over carousel container
+            const carouselContainer = document.querySelector('.partners-carousel-container');
+            const carousel = document.querySelector('.partners-carousel');
+            
+            carouselContainer.addEventListener('mouseenter', function() {
+                carousel.style.animationPlayState = 'paused';
+            });
+            
+            carouselContainer.addEventListener('mouseleave', function() {
+                carousel.style.animationPlayState = 'running';
+            });
 
-.floating-circles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
-}
-
-.circle-1 {
-  width: 300px;
-  height: 300px;
-  top: -100px;
-  left: -100px;
-  animation: float 15s infinite ease-in-out;
-}
-
-.circle-2 {
-  width: 200px;
-  height: 200px;
-  bottom: -50px;
-  right: -50px;
-  animation: float 12s infinite ease-in-out reverse;
-}
-
-.circle-3 {
-  width: 150px;
-  height: 150px;
-  top: 30%;
-  right: 10%;
-  animation: float 10s infinite ease-in-out;
-}
-
-.circle-4 {
-  width: 100px;
-  height: 100px;
-  bottom: 20%;
-  left: 15%;
-  animation: float 8s infinite ease-in-out reverse;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-20px) translateX(20px);
-  }
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.section-header h2 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.section-header h2 span {
-  color: #ffcc00;
-  position: relative;
-}
-
-.section-header h2 span::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #ffcc00, transparent);
-  border-radius: 3px;
-}
-
-.section-subtitle {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Case Study Cards */
-.case-study-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.case-study-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.case-study-image {
-  position: relative;
-  height: 200px;
-  overflow: hidden;
-}
-
-.case-study-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.case-study-card:hover .case-study-image img {
-  transform: scale(1.05);
-}
-
-.case-study-badge {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #ffcc00;
-  color: #1a1a1a;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.case-study-content {
-  padding: 25px;
-}
-
-.case-study-content h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.case-study-content p {
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.case-study-stats {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.stat-item {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px 15px;
-  border-radius: 8px;
-  text-align: center;
-  flex: 1;
-}
-
-.stat-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffcc00;
-  margin-bottom: 5px;
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.read-case-study {
-  color: #ffcc00;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.read-case-study i {
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-}
-
-.read-case-study:hover {
-  color: white;
-}
-
-.read-case-study:hover i {
-  transform: translateX(5px);
-}
-
-/* CTA Section */
-.case-studies-cta {
-  margin-top: 80px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 60px;
-  border-radius: 15px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.case-studies-cta h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.case-studies-cta p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.btn-primary, .btn-secondary {
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.btn-primary {
-  background: #ffcc00;
-  color: #1a1a1a;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  background: #ffd633;
-}
-
-.btn-secondary {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-3px);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 992px) {
-  .case-studies {
-    padding: 80px 0;
-  }
-  
-  .case-study-image {
-    height: 180px;
-  }
-  
-  .case-study-content {
-    padding: 20px;
-  }
-  
-  .case-studies-cta {
-    padding: 40px;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-header h2 {
-    font-size: 2.2rem;
-  }
-  
-  .case-study-stats {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .case-studies-cta {
-    padding: 30px 20px;
-  }
-  
-  .case-studies-cta h3 {
-    font-size: 1.6rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .case-studies {
-    padding: 60px 0;
-  }
-  
-  .section-header h2 {
-    font-size: 1.8rem;
-  }
-  
-  .cta-buttons {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .btn-primary, .btn-secondary {
-    width: 100%;
-  }
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize AOS animations if library is loaded
-  if (typeof AOS !== 'undefined') {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-  }
-  
-  // Smooth scroll for CTA buttons
-  document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
-      
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
+            // Add click functionality to partner items
+            partnerItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const partnerName = this.querySelector('.partner-name').textContent;
+                    console.log(`Clicked on partner: ${partnerName}`);
+                    // You can add modal opening or navigation here
+                });
+            });
         });
-      }
-    });
-  });
-  
-  // Add hover effect to case study cards
-  const caseStudyCards = document.querySelectorAll('.case-study-card');
-  caseStudyCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.querySelector('.read-case-study i').style.transform = 'translateX(5px)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      if (!this.querySelector('.read-case-study:hover')) {
-        this.querySelector('.read-case-study i').style.transform = 'translateX(0)';
-      }
-    });
-  });
-});
-</script>
-    
+    </script>
+</body>
+</html>
     <!-- Why Us Section -->
 
 
