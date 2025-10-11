@@ -51,9 +51,10 @@
   
   <!-- Company Name Text -->
   <div class="logo-text" style="display: flex; flex-direction: column;">
-    <span class="company-name" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 24px; color: white; line-height: 1.1;">WorldWays</span>
+    <span class="companyy-name" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 24px; color: white; line-height: 1.1;">WorldWays</span>
     <span class="company-tagline" style="font-family: 'Roboto Mono', monospace; font-size: 14px; color: #64748b; letter-spacing: 0.5px;">Web-Developers</span>
   </div>
+  
 </a>
       <!-- Uncomment below if you prefer to use an image logo -->
       
@@ -64,7 +65,7 @@
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="#case-studies">Case-Studies</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="#reviews">Reviews</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="getstarted scrollto" href="#contact">Free Consultation</a></li>
         </ul>
@@ -2110,15 +2111,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- End Services Section -->
     
     <!-- ======= Case Studies Section ======= -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worldways Partners</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         /* ======= Partners Section Styles ======= */
         .partners {
@@ -2463,176 +2455,6 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 0;
         }
 
-        /* CTA Section */
-        .partners-cta {
-            margin-top: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 60px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .partners-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 204, 0, 0.1), rgba(2, 117, 216, 0.1));
-            z-index: -1;
-        }
-
-        .partners-cta h3 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .partners-cta p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 14px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: #ffcc00;
-            color: #1a1a1a;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 204, 0, 0.4);
-            background: #ffd633;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 1200px) {
-            .partners-carousel {
-                gap: 40px;
-            }
-            
-            .partner-item {
-                flex: 0 0 220px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .partners {
-                padding: 80px 0;
-            }
-            
-            .section-header h2 {
-                font-size: 2.5rem;
-            }
-            
-            .partners-carousel {
-                gap: 30px;
-            }
-            
-            .partner-item {
-                flex: 0 0 200px;
-            }
-            
-            .types-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-            
-            .partners-cta {
-                padding: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .section-header h2 {
-                font-size: 2rem;
-            }
-            
-            .section-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .partners-carousel {
-                gap: 20px;
-            }
-            
-            .partner-item {
-                flex: 0 0 180px;
-                padding: 20px 15px;
-            }
-            
-            .partner-logo {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .types-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .partners-cta {
-                padding: 30px 20px;
-            }
-            
-            .partners-cta h3 {
-                font-size: 1.8rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
-        }
-
         @media (max-width: 576px) {
             .partners {
                 padding: 60px 0;
@@ -2905,22 +2727,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             </div>
-
-            <!-- CTA Section -->
-            <div class="partners-cta" data-aos="fade-up" data-aos-delay="300">
-                <h3>Become Our Partner</h3>
-                <p>Join our network of industry leaders and innovative companies to create exceptional value together</p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn-primary">
-                        <i class="fas fa-handshake"></i>
-                        Partner With Us
-                    </a>
-                    <a href="#about" class="btn-secondary">
-                        <i class="fas fa-info-circle"></i>
-                        Learn More
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -2986,629 +2792,1047 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     </script>
-</body>
-</html>
+    
+    
+    
     <!-- Why Us Section -->
+    <style>
+        /* ======= Case Studies Section ======= */
+        .case-studies {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(2, 117, 216, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(91, 192, 222, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
 
-    <!-- ======= Team Section ======= -->
+        .case-studies .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Companies Grid */
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .company-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .logo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(2, 117, 216, 0.1), rgba(91, 192, 222, 0.1));
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .logo-container:hover {
+            transform: translateY(-15px) scale(1.1);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(2, 117, 216, 0.3);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(2, 117, 216, 0.1);
+        }
+
+        .logo-container:hover::before {
+            opacity: 1;
+        }
+
+        .company-logo {
+            max-width: 100%;
+            max-height: 100%;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+            filter: brightness(0.9);
+            object-fit: contain;
+        }
+
+        .logo-container:hover .company-logo {
+            filter: brightness(1.1) drop-shadow(0 5px 15px rgba(2, 117, 216, 0.4));
+            transform: scale(1.1);
+        }
+
+        /* Fallback logo styling */
+        .logo-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .company-name {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .company-item:hover .company-name {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom logo colors for specific companies */
+        .company-item:nth-child(1) .logo-container:hover {
+            border-color: rgba(220, 38, 38, 0.4);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(220, 38, 38, 0.1);
+        }
+
+        .company-item:nth-child(1) .logo-container::before {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(248, 113, 113, 0.1));
+        }
+
+        .company-item:nth-child(2) .logo-container:hover {
+            border-color: rgba(5, 150, 105, 0.4);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(5, 150, 105, 0.1);
+        }
+
+        .company-item:nth-child(2) .logo-container::before {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(16, 185, 129, 0.1));
+        }
+
+        .company-item:nth-child(3) .logo-container:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(139, 92, 246, 0.1);
+        }
+
+        .company-item:nth-child(3) .logo-container::before {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.1));
+        }
+
+        .company-item:nth-child(4) .logo-container:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(245, 158, 11, 0.1);
+        }
+
+        .company-item:nth-child(4) .logo-container::before {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+        }
+
+        .company-item:nth-child(5) .logo-container:hover {
+            border-color: rgba(236, 72, 153, 0.4);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(236, 72, 153, 0.1);
+        }
+
+        .company-item:nth-child(5) .logo-container::before {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(244, 114, 182, 0.1));
+        }
+
+        .company-item:nth-child(6) .logo-container:hover {
+            border-color: rgba(180, 83, 9, 0.4);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(180, 83, 9, 0.1);
+        }
+
+        .company-item:nth-child(6) .logo-container::before {
+            background: linear-gradient(135deg, rgba(180, 83, 9, 0.1), rgba(217, 119, 6, 0.1));
+        }
+
+        /* CTA Section */
+        .case-studies-cta {
+            text-align: center;
+            margin-top: 80px;
+        
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .companies-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .case-studies {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .companies-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .logo-container {
+                width: 130px;
+                height: 130px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .companies-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .logo-container {
+                width: 120px;
+                height: 120px;
+                padding: 20px;
+            }
+            
+            .cta-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .case-studies {
+                padding: 60px 0;
+            }
+            
+            .companies-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .logo-container {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+        /* Make all company logos round */
+.company-logo {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: white; /* Optional: Add background if logos have transparency */
+    padding: 10px; /* Optional: Add padding inside the circle */
+}
+
+/* Ensure the container is also round */
+.logo-container {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* For better image quality */
+.company-logo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+    </style>
+</head>
+<body>
+    <!-- ======= Case Studies Section ======= -->
+    <section id="case-studies" class="case-studies">
+        <!-- Background Overlay -->
+        <div class="background-overlay"></div>
+
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header" data-aos="fade-up">
+                <h1 class="section-title">Our <span>Success Stories</span></h1>
+                <p class="section-subtitle">Companies we've partnered with to deliver exceptional digital solutions</p>
+            </div>
+
+            <!-- Companies Grid -->
+            <div class="companies-grid" data-aos="fade-up" data-aos-delay="200">
+                <!-- KCSFA -->
+                <div class="company-item">
+                    <div class="logo-container">
+                        <img src="assets/img/KCSFA.png" alt="KCSFA" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback" style="display: none;">KCS</div>
+                    </div>
+                    <div class="company-name">KCSFA</div>
+                </div>
+
+                <!-- WorldWaysOne Ventures -->
+                <div class="company-item">
+                    <div class="logo-container">
+                        <img src="assets/img/ww-logo.jpeg" alt="WorldWaysOne Ventures" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback" style="display: none;">WW1</div>
+                    </div>
+                    <div class="company-name">WorldWaysOne Ventures</div>
+                </div>
+
+                <!-- Archisphere Architects -->
+                <div class="company-item">
+                    <div class="logo-container">
+                        <img src="assets/img/archisphere-logo.png" alt="Archisphere Architects" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback" style="display: none;">AA</div>
+                    </div>
+                    <div class="company-name">Archisphere Architects</div>
+                </div>
+
+                <!-- Fastlink Internet Solutions -->
+                <div class="company-item">
+                    <div class="logo-container">
+                        <img src="assets/img/fastlink-logo.png" alt="Fastlink Internet Solutions" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback" style="display: none;">FL</div>
+                    </div>
+                    <div class="company-name">Fastlink Internet Solutions</div>
+                </div>
+
+                <!-- Fexxie Pictures -->
+                <div class="company-item">
+                    <div class="logo-container">
+                        <img src="assets/img/fexxie-logo.png" alt="Fexxie Pictures" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback" style="display: none;">FP</div>
+                    </div>
+                    <div class="company-name">Fexxie Pictures</div>
+                </div>
+
+                <!-- Bronze Arts Photography -->
+                <div class="company-item">
+                    <div class="logo-container">
+                        <img src="assets/img/bronzearts-logo.png" alt="Bronze Arts Photography" class="company-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback" style="display: none;">BA</div>
+                    </div>
+                    <div class="company-name">Bronze Arts Photography</div>
+                </div>
+            </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!---======= Reviews Section ======= */-->
+     <style>
+        /* ======= Reviews Section ======= */
+        .reviews-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(2, 117, 216, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(91, 192, 222, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .reviews-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Reviews Carousel */
+        .reviews-carousel-container {
+            position: relative;
+            margin: 60px 0;
+            overflow: hidden;
+        }
+
+        .reviews-track {
+            display: flex;
+            animation: scrollReviews 40s linear infinite;
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .reviews-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollReviews {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-400px * 6 - 30px * 6));
+            }
+        }
+
+        .review-card {
+            flex: 0 0 400px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .review-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: rgba(2, 117, 216, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Client Header */
+        .client-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .client-info {
+            flex: 1;
+        }
+
+        .client-name {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .review-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .review-count {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .google-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .google-icon {
+            color: #4285f4;
+            font-size: 0.9rem;
+        }
+
+        /* Review Content */
+        .review-content {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .review-time {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        /* Star Rating */
+        .star-rating {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .reviews-stats {
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .reviews-cta {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .cta-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #0275d8, #5bc0de);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(2, 117, 216, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(2, 117, 216, 0.5);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .review-card {
+                flex: 0 0 350px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .reviews-section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .review-card {
+                flex: 0 0 320px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .review-card {
+                flex: 0 0 300px;
+                padding: 25px;
+            }
+            
+            .client-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .cta-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .reviews-section {
+                padding: 60px 0;
+            }
+            
+            .review-card {
+                flex: 0 0 280px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ======= Reviews Section ======= -->
+    <section id="reviews" class="reviews-section">
+        <!-- Background Overlay -->
+        <div class="background-overlay"></div>
+
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header" data-aos="fade-up">
+                <h1 class="section-title">Client <span>Reviews</span></h1>
+                <p class="section-subtitle">See what our clients are saying about their experience with Worldways Web Developers</p>
+            </div>
+
+            <!-- Reviews Carousel -->
+            <div class="reviews-carousel-container">
+                <div class="reviews-track">
+                    <!-- Review 1 - Ondara Absolom -->
+                    <div class="review-card">
+                        <div class="client-header">
+                            <div class="client-avatar">OA</div>
+                            <div class="client-info">
+                                <div class="client-name">Ondara Absolom</div>
+                                <div class="review-meta">
+                                    <div class="review-count">11 reviews</div>
+                                    <div class="google-badge">
+                                        <i class="fab fa-google google-icon"></i>
+                                        Google
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="review-content">
+                            "Best web developers in Kenya."
+                        </div>
+                        <div class="review-time">Recently</div>
+                    </div>
+
+                    <!-- Review 2 - Bridgit Kwamboka -->
+                    <div class="review-card">
+                        <div class="client-header">
+                            <div class="client-avatar">BK</div>
+                            <div class="client-info">
+                                <div class="client-name">Bridgit Kwamboka</div>
+                                <div class="review-meta">
+                                    <div class="review-count">1 review</div>
+                                    <div class="google-badge">
+                                        <i class="fab fa-google google-icon"></i>
+                                        Google
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="review-content">
+                            "Helped me solve my schemes of work in a timely and perfect manner."
+                        </div>
+                        <div class="review-time">1 month ago</div>
+                    </div>
+
+                    <!-- Review 3 - Daniel Osoro -->
+                    <div class="review-card">
+                        <div class="client-header">
+                            <div class="client-avatar">DO</div>
+                            <div class="client-info">
+                                <div class="client-name">Daniel Osoro</div>
+                                <div class="review-meta">
+                                    <div class="review-count">2 reviews</div>
+                                    <div class="google-badge">
+                                        <i class="fab fa-google google-icon"></i>
+                                        Google
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="review-content">
+                            "Did an outstanding job and improved my online presence."
+                        </div>
+                        <div class="review-time">3 months ago</div>
+                    </div>
+
+                    <!-- Review 4 - Archisphere Architects -->
+                    <div class="review-card">
+                        <div class="client-header">
+                            <div class="client-avatar">AA</div>
+                            <div class="client-info">
+                                <div class="client-name">Archisphere Architects</div>
+                                <div class="review-meta">
+                                    <div class="review-count">1 review</div>
+                                    <div class="google-badge">
+                                        <i class="fab fa-google google-icon"></i>
+                                        Google
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="review-content">
+                            "Worldways Web-Developers did an outstanding job on our company website! They perfectly captured our brand's vision with a sleek, modern, and user-friendly design. Their team was professional, responsive, and delivered on time. Highly recommended!"
+                        </div>
+                        <div class="review-time">3 months ago</div>
+                    </div>
+
+                    <!-- Review 5 - Stealth Reliable -->
+                    <div class="review-card">
+                        <div class="client-header">
+                            <div class="client-avatar">SR</div>
+                            <div class="client-info">
+                                <div class="client-name">Stealth Reliable</div>
+                                <div class="review-meta">
+                                    <div class="review-count">1 review</div>
+                                    <div class="google-badge">
+                                        <i class="fab fa-google google-icon"></i>
+                                        Google
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="review-content">
+                            "Worldways Web Developers transformed my online presence! Their SEO strategies skyrocketed my website's rankings, and their social media expertise brought in way more engagement. They're professional, knowledgeable, and deliver real results. Highly recommend for anyone looking to grow their digital reach!"
+                        </div>
+                        <div class="review-time">3 months ago</div>
+                    </div>
+
+                    <!-- Review 6 - Rehema Nyabuto -->
+                    <div class="review-card">
+                        <div class="client-header">
+                            <div class="client-avatar">RN</div>
+                            <div class="client-info">
+                                <div class="client-name">Rehema Nyabuto</div>
+                                <div class="review-meta">
+                                    <div class="review-count">1 review</div>
+                                    <div class="google-badge">
+                                        <i class="fab fa-google google-icon"></i>
+                                        Google
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="review-content">
+                            "I trust in their services."
+                        </div>
+                        <div class="review-time">3 months ago</div>
+                    </div>
+
+                    <!-- Duplicate for seamless loop -->
+                    <div class="review-card">
+                        <div class="client-header">
+                            <div class="client-avatar">OA</div>
+                            <div class="client-info">
+                                <div class="client-name">Ondara Absolom</div>
+                                <div class="review-meta">
+                                    <div class="review-count">11 reviews</div>
+                                    <div class="google-badge">
+                                        <i class="fab fa-google google-icon"></i>
+                                        Google
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="review-content">
+                            "Best web developers in Kenya."
+                        </div>
+                        <div class="review-time">Recently</div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="client-header">
+                            <div class="client-avatar">BK</div>
+                            <div class="client-info">
+                                <div class="client-name">Bridgit Kwamboka</div>
+                                <div class="review-meta">
+                                    <div class="review-count">1 review</div>
+                                    <div class="google-badge">
+                                        <i class="fab fa-google google-icon"></i>
+                                        Google
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <div class="review-content">
+                            "Helped me solve my schemes of work in a timely and perfect manner."
+                        </div>
+                        <div class="review-time">1 month ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="reviews-cta" data-aos="fade-up" data-aos-delay="300">
+                <h2 class="cta-title">Ready to Experience Excellence?</h2>
+                <p class="cta-subtitle">Join our satisfied clients and let us transform your digital presence</p>
+                <a href="#contact" class="cta-button">
+                    <i class="fas fa-calendar-check"></i>
+                    Book Consultation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-in-out',
+                once: true
+            });
+
+            // Pause animation on hover
+            const reviewsTrack = document.querySelector('.reviews-track');
+            const reviewsContainer = document.querySelector('.reviews-carousel-container');
+            
+            reviewsContainer.addEventListener('mouseenter', function() {
+                reviewsTrack.style.animationPlayState = 'paused';
+            });
+            
+            reviewsContainer.addEventListener('mouseleave', function() {
+                reviewsTrack.style.animationPlayState = 'running';
+            });
+
+            // Smooth scroll for CTA button
+            document.querySelector('.cta-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
     
-    <!-- ======= Team Section with Social Media Popout ======= -->
-<section id="team" class="team">
-  <!-- Background Elements -->
-  <div class="team-bg-pattern"></div>
-  <div class="team-bg-gradient"></div>
-  
-  <div class="container" data-aos="fade-up">
-    <div class="section-header">
-      <h2>Our <style>#team h2 { color: white; }</style><span> Team</span></h2>
-      <div class="title-divider">
-        <div class="line"></div>
-        <div class="diamond"></div>
-        <div class="line"></div>
-      </div>
-      <p class="section-subtitle">Meet the brilliant minds behind Worldways Web-Developers - a diverse team of Kenyan tech experts committed to delivering excellence</p>
-    </div>
-
-    <div class="row gy-4">
-      <!-- Team Member 1 -->
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="team-member">
-          <div class="member-avatar-container">
-            <div class="member-avatar">
-              <i class="fas fa-user-tie"></i>
-              <div class="avatar-bg"></div>
-            </div>
-            <div class="social-popout">
-              <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Kennedy</h4>
-            <span>Project Manager</span>
-            <p>Orchestrating seamless project execution with 8+ years experience in agile methodologies and team leadership.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 2 -->
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="150">
-        <div class="team-member">
-          <div class="member-avatar-container">
-            <div class="member-avatar">
-              <i class="fas fa-user-tie"></i>
-              <div class="avatar-bg"></div>
-            </div>
-            <div class="social-popout">
-              <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Absolom</h4>
-            <span>Fullstack Developer</span>
-            <p>Building robust web applications with expertise in React, Node.js, and cloud architectures.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 3 -->
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="team-member">
-          <div class="member-avatar-container">
-            <div class="member-avatar">
-              <i class="fas fa-user-tie"></i>
-              <div class="avatar-bg"></div>
-            </div>
-            <div class="social-popout">
-              <a href="https://www.facebook.com/share/1AfCTCmZp4/" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-              <a href="https://www.facebook.com/share/1AfCTCmZp4/" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Rodgers</h4>
-            <span>UI/UX Designer</span>
-            <p>Crafting intuitive user experiences with a focus on accessibility and African design aesthetics.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 4 -->
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="250">
-        <div class="team-member">
-          <div class="member-avatar-container">
-            <div class="member-avatar">
-              <i class="fas fa-user-tie"></i>
-              <div class="avatar-bg"></div>
-            </div>
-            <div class="social-popout">
-              <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Peter</h4>
-            <span>Backend Developer</span>
-            <p>Architecting scalable APIs and databases with Python, Django, and PostgreSQL expertise.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 5 -->
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="team-member">
-          <div class="member-avatar-container">
-            <div class="member-avatar">
-              <i class="fas fa-user-tie"></i>
-              <div class="avatar-bg"></div>
-            </div>
-            <div class="social-popout">
-              <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Brian Njoroge</h4>
-            <span>Security Analyst</span>
-            <p>Protecting digital assets with advanced threat detection and cybersecurity best practices.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 6 -->
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="350">
-        <div class="team-member">
-          <div class="member-avatar-container">
-            <div class="member-avatar">
-              <i class="fas fa-user-tie"></i>
-              <div class="avatar-bg"></div>
-            </div>
-            <div class="social-popout">
-              <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Erick</h4>
-            <span>Frontend Developer</span>
-            <p>Creating responsive interfaces with Vue.js and modern CSS frameworks.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 7 -->
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-        <div class="team-member">
-          <div class="member-avatar-container">
-            <div class="member-avatar">
-              <i class="fas fa-user-tie"></i>
-              <div class="avatar-bg"></div>
-            </div>
-            <div class="social-popout">
-              <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Loice</h4>
-            <span>Marketing & Media</span>
-            <p>Amplifying our brand through strategic digital campaigns and compelling storytelling.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team Member 8 -->
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="450">
-        <div class="team-member">
-          <div class="member-avatar-container">
-            <div class="member-avatar">
-              <i class="fas fa-user-tie"></i>
-              <div class="avatar-bg"></div>
-            </div>
-            <div class="social-popout">
-              <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Andrew</h4>
-            <span>Software QA Engineer</span>
-            <p>Ensuring flawless performance through rigorous testing and quality assurance protocols.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Team CTA -->
-    <div class="team-cta" data-aos="fade-up" data-aos-delay="500">
-  <h3>Want to join our growing team?</h3>
-  <p>We're always looking for talented individuals to join our mission</p>
-  <li><a class="nav-link scrolltot" href="contracts.html">View Open Positions</a></li>
-  <style>
-    .nav-link.scrolltot { color: white; background: green; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; }
-    .nav-link.scrolltot:hover { background: green; color: #fff; }
-  </style>
-</div>
-
-
-<style>
-/* ======= Updated Team Section Styles ======= */
-.team {
-  position: relative;
-  padding: 100px 0;
-  overflow: hidden;
-}
-
-/* Background styles remain the same */
-.team-bg-pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 30px 30px;
-  z-index: -2;
-}
-
-.team-bg-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-  z-index: -3;
-}
-
-/* Header styles remain the same */
-.section-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.section-header h2 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.section-header h2 span {
-  color: #4ecca3;
-  position: relative;
-}
-
-.section-header h2 span::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #4ecca3, transparent);
-  border-radius: 3px;
-}
-
-.title-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.title-divider .line {
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #4ecca3);
-}
-
-.title-divider .diamond {
-  width: 12px;
-  height: 12px;
-  background: #4ecca3;
-  transform: rotate(45deg);
-  margin: 0 15px;
-}
-
-.title-divider .line:last-child {
-  background: linear-gradient(90deg, #4ecca3, transparent);
-}
-
-.section-subtitle {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Updated Team Member Cards */
-.team-member {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 30px;
-  height: 100%;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
-  position: relative;
-}
-
-.team-member:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.member-avatar-container {
-  position: relative;
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 25px;
-}
-
-.member-avatar {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: all 0.3s ease;
-}
-
-.member-avatar i {
-  font-size: 3rem;
-  color: white;
-  position: relative;
-  z-index: 2;
-  line-height: 120px;
-  transition: all 0.3s ease;
-}
-
-.avatar-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #4ecca3, #3a7bd5);
-  border-radius: 50%;
-  z-index: 1;
-  transition: all 0.3s ease;
-}
-
-/* Social Media Popout Effect */
-.social-popout {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  opacity: 0;
-  width: 0;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.team-member:hover .social-popout {
-  opacity: 1;
-  width: auto;
-  right: -70px;
-}
-
-.social-icon {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #2c5364;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.social-icon:hover {
-  background: #4ecca3;
-  color: white;
-  transform: translateY(-3px);
-}
-
-.social-icon i {
-  font-size: 1rem;
-}
-
-/* Member info styles */
-.member-info h4 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 5px;
-}
-
-.member-info span {
-  display: block;
-  color: #4ecca3;
-  font-weight: 500;
-  margin-bottom: 15px;
-  font-size: 0.9rem;
-}
-
-.member-info p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-/* Team CTA styles remain the same */
-.team-cta {
-  margin-top: 80px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 60px;
-  border-radius: 15px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.team-cta h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.team-cta p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.btn-join {
-  display: inline-block;
-  padding: 12px 30px;
-  background: #4ecca3;
-  color: #1a1a1a;
-  border-radius: 50px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn-join:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  background: #5ed5b0;
-  color: #1a1a1a;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-  .team-member:hover .social-popout {
-    right: -60px;
-  }
-}
-
-@media (max-width: 992px) {
-  .team {
-    padding: 80px 0;
-  }
-  
-  .team-member {
-    padding: 25px;
-  }
-  
-  .team-cta {
-    padding: 40px;
-  }
-  
-  .member-avatar-container {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .member-avatar i {
-    font-size: 2.5rem;
-    line-height: 100px;
-  }
-  
-  .team-member:hover .social-popout {
-    right: -50px;
-  }
-  
-  .social-icon {
-    width: 35px;
-    height: 35px;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-header h2 {
-    font-size: 2.2rem;
-  }
-  
-  .team-cta {
-    padding: 30px 20px;
-  }
-  
-  .team-cta h3 {
-    font-size: 1.6rem;
-  }
-  
-  .team-member:hover .social-popout {
-    right: -40px;
-  }
-}
-
-@media (max-width: 576px) {
-  .team {
-    padding: 60px 0;
-  }
-  
-  .section-header h2 {
-    font-size: 1.8rem;
-  }
-  
-  .member-info h4 {
-    font-size: 1.2rem;
-  }
-  
-  /* Stack social icons horizontally on mobile */
-  .social-popout {
-    flex-direction: row;
-    top: auto;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto !important;
-    right: auto !important;
-    opacity: 0;
-  }
-  
-  .team-member:hover .social-popout {
-    bottom: -10px;
-    opacity: 1;
-  }
-  
-  .social-icon {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .social-icon i {
-    font-size: 0.8rem;
-  }
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize AOS animations if library is loaded
-  if (typeof AOS !== 'undefined') {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-  }
-  
-  // Smooth scroll for join button
-  document.querySelector('.btn-join').addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
-  });
-  
-  // Add hover effect to social icons
-  const socialIcons = document.querySelectorAll('.social-icon');
-  socialIcons.forEach(icon => {
-    icon.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-3px)';
-    });
     
-    icon.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-    });
-  });
-});
-</script>
-</section>
-    
-    
-    <!-- End Team Section -->
+    <!-- End review Section -->
     
     
     <!-- ======= Premium Contact Section ======= -->
@@ -4335,11 +4559,87 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     </div>
+    <div class="whatsapp-float" id="whatsappBtn">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
+        </svg>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="header-content">
+                <div class="profile-pic">FP</div>
+                <div class="header-text">
+                    <h3>WorldWays Web-Developers</h3>
+                    <p>Inspiring Innovation Through Advanced Technology.</p>
+                </div>
+            </div>
+            <button class="close-btn" id="closeBtn">×</button>
+        </div>
+        
+        <div class="chat-body">
+            <div class="message">
+                <p><strong>Admin</strong></p>
+                <p>Hi there!</p>
+                <p>Welcome to WorldWays Web-Developers</p>
+                <p>How can we help you?</p>
+                <div class="message-time">Just now</div>
+            </div>
+        </div>
+        
+        <div class="chat-footer">
+            <button class="start-chat-btn" id="startChatBtn">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
+                </svg>
+                Start Chat
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Get elements
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeBtn = document.getElementById('closeBtn');
+        const startChatBtn = document.getElementById('startChatBtn');
+
+        // Toggle chat window
+        whatsappBtn.addEventListener('click', function() {
+            chatWindow.classList.toggle('active');
+        });
+
+        // Close chat window
+        closeBtn.addEventListener('click', function() {
+            chatWindow.classList.remove('active');
+        });
+
+        // Start chat functionality
+        startChatBtn.addEventListener('click', function() {
+            // Replace with your WhatsApp number (include country code without +)
+            const phoneNumber = '+254112293409'; // Replace with actual number
+            const message = 'Hi WorldWays Web-Developers';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Close chat when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!chatWindow.contains(event.target) && !whatsappBtn.contains(event.target)) {
+                chatWindow.classList.remove('active');
+            }
+        });
+
+        // Prevent chat window from closing when clicking inside it
+        chatWindow.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+        </script>
   </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
-  <a href="#hero" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -4351,36 +4651,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-  var Tawk_API = Tawk_API || {};
-  Tawk_API.customStyle = {
-    visibility : {
-      desktop : {
-        position : 'bl', // bottom-left
-        x : 20,          // 20px from left
-        y : 20           // 20px from bottom
-      },
-      mobile : {
-        position : 'bl', // bottom-left for mobile too
-        x : 10,          // 10px from left
-        y : 10           // 10px from bottom
-      }
-    }
-  };
-  
-  var Tawk_LoadStart = new Date();
-  (function(){
-    var s1 = document.createElement("script"),
-        s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/66cdee4fea492f34bc0aa702/1i6a6lpqp';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-  })();
-</script>
-  <!--End of Tawk.to Script-->
   <script>
   document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
@@ -4389,41 +4659,225 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
         .whatsapp-float {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25D366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 16px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 180px;
-            height: 50px;
-            text-decoration: none;
+            font-size: 28px;
             transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse 2s infinite;
         }
-        
+
         .whatsapp-float:hover {
-            background-color: #128C7E;
-            transform: scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
         }
-        
-        .whatsapp-icon {
-            margin-right: 8px;
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+            }
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+        }
+
+        /* Chat Window */
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1001;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .chat-window.active {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        .chat-header {
+            background: #128C7E;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-pic {
+            width: 45px;
+            height: 45px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .header-text h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
             font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Chat Body */
+        .chat-body {
+            flex: 1;
+            background: #F0F0F0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e5e5ea' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm15 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .message {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 85%;
+            position: relative;
+        }
+
+        .message::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid white;
+        }
+
+        .message p {
+            margin: 0;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* Start Chat Button */
+        .chat-footer {
+            padding: 20px;
+            background: white;
+        }
+
+        .start-chat-btn {
+            width: 100%;
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .start-chat-btn:hover {
+            background: #128C7E;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .chat-window {
+                width: 90vw;
+                right: 5vw;
+                height: 70vh;
+                bottom: 90px;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+            }
+        }
+
+        /* WhatsApp Icon SVG */
+        .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
-<body>
-    <a href="https://wa.me/254112293409?text=Hello%20WorldWays%20Web-Developers" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp whatsapp-icon"></i>
-        Contact Us
-    </a>
 </body>
-
 </html>
