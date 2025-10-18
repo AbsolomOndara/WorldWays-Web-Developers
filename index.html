@@ -3849,7 +3849,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="diamond"></div>
         <div class="line"></div>
       </div>
-      <p class="section-subtitle">Have a project in mind or want to discuss how we can help your business? Reach out to us—we'd love to hear from you!</p>
+      <p class="section-subtitle">Ready to start your project? Let's discuss how we can bring your vision to life with cutting-edge solutions.</p>
     </div>
 
     <div class="row gy-4">
@@ -3862,9 +3862,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <i class="fas fa-map-marker-alt"></i>
               </div>
               <div class="contact-details">
-                <h4>Our Location</h4>
-                <p>Kahawa Sukari, Nairobi, Kenya</p>
-                <a href="https://goo.gl/maps/3JQZ8Z9Z9Z9Z9Z9Z9" target="_blank" class="map-link">View on Google Maps <i class="fas fa-arrow-right"></i></a>
+                <h4>Our Office</h4>
+                <p>RNG Plaza, Nairobi CBD, Kenya</p>
+                <a href="https://goo.gl/maps/YOUR_RNG_PLAZA_LOCATION" target="_blank" class="map-link">Get Directions <i class="fas fa-arrow-right"></i></a>
               </div>
             </div>
 
@@ -3889,16 +3889,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="tel:+254112293409" class="call-link">Call Now <i class="fas fa-arrow-right"></i></a>
               </div>
             </div>
+
+            <div class="contact-method">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Business Hours</h4>
+                <p>Mon - Fri: 8:00 AM - 6:00 PM</p>
+                <p>Sat: 9:00 AM - 2:00 PM</p>
+              </div>
+            </div>
           </div>
 
           <div class="map-container">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.56270396094!2d36.94534133305538!3d-1.1818952734171575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f38fb78d8db95%3A0xd4d512e1687f7b1!2sKahawa%20Sukari%2C%20Kenya!5e0!3m2!1sen!2ske!4v1708583341234!5m2!1sen!2ske" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.817476559441!2d36.82115931475393!3d-1.282435835980925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d7b2d5c3c3%3A0x4a0c8a1c9a0c8a1c!2sRNG%20Plaza%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1640000000000!5m2!1sen!2ske" 
               style="border:0;" 
               allowfullscreen="" 
               loading="lazy"
               class="contact-map"
-              aria-label="Our location on Google Maps">
+              aria-label="Our location at RNG Plaza Nairobi">
             </iframe>
           </div>
         </div>
@@ -3907,25 +3918,62 @@ document.addEventListener('DOMContentLoaded', function() {
       <!-- Contact Form Column -->
       <div class="col-lg-7">
         <div class="contact-form-container">
-          <form action="forms/contact.php" method="post" role="form" class="contact-form">
+          <form action="https://formspree.io/f/xknekeno" method="POST" class="contact-form" id="contactForm">
             <div class="form-header">
-              <h3>Send Us a Message</h3>
-              <p>Fill out the form below and we'll get back to you within 24 hours</p>
+              <h3>Start Your Project</h3>
+              <p>Fill out the form and we'll get back to you within 2 hours during business hours</p>
             </div>
             
             <div class="row">
               <div class="col-md-6 form-group">
                 <div class="floating-label">
                   <input type="text" name="name" id="name" class="form-control" required>
-                  <label for="name">Your Name</label>
+                  <label for="name">Your Full Name</label>
                   <div class="underline"></div>
+                  <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6 form-group">
                 <div class="floating-label">
                   <input type="email" name="email" id="email" class="form-control" required>
-                  <label for="email">Your Email</label>
+                  <label for="email">Your Email Address</label>
                   <div class="underline"></div>
+                  <div class="input-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <div class="floating-label">
+                  <input type="tel" name="phone" id="phone" class="form-control">
+                  <label for="phone">Phone Number (Optional)</label>
+                  <div class="underline"></div>
+                  <div class="input-icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 form-group">
+                <div class="floating-label">
+                  <select name="service" id="service" class="form-control" required>
+                    <option value="" disabled selected></option>
+                    <option value="web-development">Web Development</option>
+                    <option value="mobile-app">Mobile App Development</option>
+                    <option value="ecommerce">E-commerce Solutions</option>
+                    <option value="seo">SEO & Digital Marketing</option>
+                    <option value="consultation">Business Consultation</option>
+                    <option value="other">Other Services</option>
+                  </select>
+                  <label for="service">Service Needed</label>
+                  <div class="underline"></div>
+                  <div class="input-icon">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3933,35 +3981,72 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="form-group">
               <div class="floating-label">
                 <input type="text" name="subject" id="subject" class="form-control" required>
-                <label for="subject">Subject</label>
+                <label for="subject">Project Title</label>
                 <div class="underline"></div>
+                <div class="input-icon">
+                  <i class="fas fa-pencil-alt"></i>
+                </div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="floating-label">
-                <textarea name="message" id="message" rows="6" class="form-control" required></textarea>
-                <label for="message">Your Message</label>
+                <textarea name="message" id="message" rows="6" class="form-control" required placeholder=" "></textarea>
+                <label for="message">Project Details & Requirements</label>
                 <div class="underline"></div>
+                <div class="input-icon">
+                  <i class="fas fa-comment"></i>
+                </div>
+              </div>
+              <div class="char-counter">
+                <span id="charCount">0</span>/500 characters
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="budget-selector">
+                <label>Estimated Budget Range</label>
+                <div class="budget-options">
+                  <input type="radio" name="budget" id="budget1" value="5k-20k">
+                  <label for="budget1">KES 5K - 20K</label>
+                  
+                  <input type="radio" name="budget" id="budget2" value="20k-50k">
+                  <label for="budget2">KES 20K - 50K</label>
+                  
+                  <input type="radio" name="budget" id="budget3" value="50k-100k">
+                  <label for="budget3">KES 50K - 100K</label>
+                  
+                  <input type="radio" name="budget" id="budget4" value="100k+">
+                  <label for="budget4">KES 100K+</label>
+                  
+                  <input type="radio" name="budget" id="budget5" value="not-sure">
+                  <label for="budget5">Not Sure</label>
+                </div>
               </div>
             </div>
 
             <div class="form-status">
               <div class="loading">
                 <div class="spinner"></div>
-                <span>Sending your message...</span>
+                <span>Processing your request...</span>
               </div>
-              <div class="error-message">Oops! Something went wrong. Please try again.</div>
+              <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Oops! Something went wrong. Please try again.</span>
+              </div>
               <div class="sent-message">
                 <i class="fas fa-check-circle"></i>
-                <span>Your message has been sent. Thank you!</span>
+                <span>Thank you! Your message has been sent. We'll contact you shortly.</span>
               </div>
             </div>
 
             <div class="text-center">
               <button type="submit" class="submit-btn">
-                <span>Send Message</span>
+                <span class="btn-text">Send Message</span>
                 <i class="fas fa-paper-plane"></i>
+                <div class="btn-loading">
+                  <div class="btn-spinner"></div>
+                </div>
               </button>
             </div>
           </form>
@@ -3969,13 +4054,13 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
   </div>
-
+</section>
 
 <style>
-/* ======= Contact Section Styles ======= */
+/* ======= Premium Contact Section Styles ======= */
 .contact {
   position: relative;
-  padding: 100px 0;
+  padding: 120px 0;
   overflow: hidden;
   color: #333;
 }
@@ -3986,8 +4071,11 @@ document.addEventListener('DOMContentLoaded', function() {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(rgba(78, 204, 163, 0.1) 1px, transparent 1px);
-  background-size: 30px 30px;
+  background-image: 
+    radial-gradient(rgba(2, 117, 216, 0.08) 1px, transparent 1px),
+    radial-gradient(rgba(91, 192, 222, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 30px 30px;
+  background-position: 0 0, 25px 25px;
   z-index: -2;
 }
 
@@ -3997,36 +4085,38 @@ document.addEventListener('DOMContentLoaded', function() {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, #f8f9fa 0%, #ffffff 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f8ff 100%);
   z-index: -3;
 }
 
 /* Section Header */
 .section-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .section-header h2 {
-  font-size: 2.8rem;
+  font-size: 3.2rem;
   font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 15px;
+  color: #1a365d;
+  margin-bottom: 20px;
 }
 
 .section-header h2 span {
-  color: #4ecca3;
+  background: linear-gradient(135deg, #0275d8, #5bc0de);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   position: relative;
 }
 
 .section-header h2 span::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: -8px;
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #4ecca3, transparent);
+  background: linear-gradient(90deg, #0275d8, #5bc0de);
   border-radius: 3px;
 }
 
@@ -4034,33 +4124,46 @@ document.addEventListener('DOMContentLoaded', function() {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .title-divider .line {
-  width: 80px;
+  width: 100px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #4ecca3);
+  background: linear-gradient(90deg, transparent, #0275d8);
 }
 
 .title-divider .diamond {
-  width: 12px;
-  height: 12px;
-  background: #4ecca3;
+  width: 14px;
+  height: 14px;
+  background: #0275d8;
   transform: rotate(45deg);
-  margin: 0 15px;
+  margin: 0 20px;
+  position: relative;
+}
+
+.title-divider .diamond::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: #5bc0de;
+  transform: rotate(45deg);
 }
 
 .title-divider .line:last-child {
-  background: linear-gradient(90deg, #4ecca3, transparent);
+  background: linear-gradient(90deg, #0275d8, transparent);
 }
 
 .section-subtitle {
-  color: #7f8c8d;
-  font-size: 1.1rem;
+  color: #5a6c7d;
+  font-size: 1.3rem;
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
+  font-weight: 300;
 }
 
 /* Contact Info Card */
@@ -4073,15 +4176,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .contact-info-card {
   background: white;
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(2, 117, 216, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(135deg, #0275d8, #5bc0de);
 }
 
 .contact-method {
   display: flex;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.contact-method:hover {
+  transform: translateX(10px);
 }
 
 .contact-method:last-child {
@@ -4089,42 +4211,52 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .contact-icon {
-  width: 60px;
-  height: 60px;
-  background: #4ecca3;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #0275d8, #5bc0de);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   flex-shrink: 0;
+  box-shadow: 0 10px 25px rgba(2, 117, 216, 0.3);
+  transition: all 0.3s ease;
+}
+
+.contact-method:hover .contact-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 15px 35px rgba(2, 117, 216, 0.4);
 }
 
 .contact-details h4 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 8px;
-}
-
-.contact-details p {
-  color: #7f8c8d;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a365d;
   margin-bottom: 10px;
 }
 
+.contact-details p {
+  color: #5a6c7d;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
 .map-link, .email-link, .call-link {
-  color: #4ecca3;
+  color: #0275d8;
   font-weight: 600;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .map-link:hover, .email-link:hover, .call-link:hover {
-  color: #3aaf8a;
+  color: #025aa5;
+  transform: translateX(5px);
 }
 
 .map-link i, .email-link i, .call-link i {
@@ -4139,16 +4271,22 @@ document.addEventListener('DOMContentLoaded', function() {
 /* Map Container */
 .map-container {
   flex-grow: 1;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(2, 117, 216, 0.1);
 }
 
 .contact-map {
   width: 100%;
   height: 100%;
-  min-height: 300px;
+  min-height: 350px;
   border: none;
+  transition: transform 0.3s ease;
+}
+
+.map-container:hover .contact-map {
+  transform: scale(1.02);
 }
 
 /* Contact Form */
@@ -4158,41 +4296,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .contact-form {
   background: white;
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(2, 117, 216, 0.1);
   height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, rgba(2, 117, 216, 0.05), rgba(91, 192, 222, 0.05));
+  border-radius: 0 0 0 100px;
 }
 
 .form-header {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  position: relative;
 }
 
 .form-header h3 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 15px;
 }
 
 .form-header p {
-  color: #7f8c8d;
+  color: #5a6c7d;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-/* Floating Label Form */
+/* Enhanced Floating Label Form */
 .floating-label {
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .floating-label label {
   position: absolute;
   top: 0;
   left: 0;
-  color: #7f8c8d;
+  color: #5a6c7d;
   pointer-events: none;
   transform-origin: 0 0;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  background: white;
+  padding: 0 5px;
+  margin-left: 10px;
 }
 
 .floating-label .underline {
@@ -4201,7 +4360,7 @@ document.addEventListener('DOMContentLoaded', function() {
   left: 0;
   width: 100%;
   height: 2px;
-  background: #e0e0e0;
+  background: #e2e8f0;
   overflow: hidden;
 }
 
@@ -4212,143 +4371,279 @@ document.addEventListener('DOMContentLoaded', function() {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #4ecca3;
+  background: linear-gradient(90deg, #0275d8, #5bc0de);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .floating-label input,
-.floating-label textarea {
+.floating-label textarea,
+.floating-label select {
   width: 100%;
-  border: none;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 10px 0;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px 50px 20px 20px;
   font-size: 1rem;
-  background: transparent;
+  background: white;
   transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.floating-label select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%235a6c7d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 20px) center;
 }
 
 .floating-label textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
+  line-height: 1.5;
 }
 
 .floating-label input:focus,
-.floating-label textarea:focus {
+.floating-label textarea:focus,
+.floating-label select:focus {
   outline: none;
-  border-bottom-color: transparent;
+  border-color: #0275d8;
+  box-shadow: 0 5px 15px rgba(2, 117, 216, 0.1);
 }
 
 .floating-label input:focus + label,
 .floating-label input:not(:placeholder-shown) + label,
 .floating-label textarea:focus + label,
-.floating-label textarea:not(:placeholder-shown) + label {
-  transform: translateY(-20px) scale(0.8);
-  color: #4ecca3;
+.floating-label textarea:not(:placeholder-shown) + label,
+.floating-label select:focus + label,
+.floating-label select:not([value=""]) + label {
+  transform: translateY(-28px) scale(0.85);
+  color: #0275d8;
+  font-weight: 600;
 }
 
 .floating-label input:focus ~ .underline::after,
-.floating-label textarea:focus ~ .underline::after {
+.floating-label textarea:focus ~ .underline::after,
+.floating-label select:focus ~ .underline::after {
   transform: scaleX(1);
+}
+
+.input-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5a6c7d;
+  transition: color 0.3s ease;
+}
+
+.floating-label:focus-within .input-icon {
+  color: #0275d8;
+}
+
+/* Character Counter */
+.char-counter {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #5a6c7d;
+  margin-top: 5px;
+}
+
+/* Budget Selector */
+.budget-selector {
+  margin-bottom: 30px;
+}
+
+.budget-selector label {
+  display: block;
+  margin-bottom: 15px;
+  color: #1a365d;
+  font-weight: 600;
+}
+
+.budget-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.budget-options input[type="radio"] {
+  display: none;
+}
+
+.budget-options label {
+  display: block;
+  padding: 12px 15px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #5a6c7d;
+  margin: 0;
+}
+
+.budget-options input[type="radio"]:checked + label {
+  background: linear-gradient(135deg, #0275d8, #5bc0de);
+  color: white;
+  border-color: #0275d8;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(2, 117, 216, 0.3);
+}
+
+.budget-options label:hover {
+  border-color: #0275d8;
+  transform: translateY(-2px);
 }
 
 /* Form Status Messages */
 .form-status {
-  margin: 20px 0;
+  margin: 30px 0;
   min-height: 60px;
 }
 
 .loading, .error-message, .sent-message {
   display: none;
   align-items: center;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  animation: slideIn 0.5s ease;
 }
 
 .loading {
-  background: rgba(78, 204, 163, 0.1);
+  background: rgba(2, 117, 216, 0.1);
+  border: 1px solid rgba(2, 117, 216, 0.2);
 }
 
 .loading .spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(78, 204, 163, 0.3);
-  border-top-color: #4ecca3;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(2, 117, 216, 0.3);
+  border-top-color: #0275d8;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
 .error-message {
-  background: rgba(231, 76, 60, 0.1);
-  color: #e74c3c;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  color: #dc3545;
 }
 
 .sent-message {
-  background: rgba(46, 204, 113, 0.1);
-  color: #2ecc71;
+  background: rgba(40, 167, 69, 0.1);
+  border: 1px solid rgba(40, 167, 69, 0.2);
+  color: #28a745;
 }
 
-.sent-message i {
-  margin-right: 10px;
-  font-size: 1.2rem;
+.sent-message i, .error-message i {
+  margin-right: 15px;
+  font-size: 1.3rem;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* Submit Button */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Submit Button */
 .submit-btn {
   position: relative;
-  background: #4ecca3;
+  background: linear-gradient(135deg, #0275d8, #5bc0de);
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 18px 45px;
   border-radius: 50px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   display: inline-flex;
   align-items: center;
-  box-shadow: 0 5px 15px rgba(78, 204, 163, 0.4);
+  box-shadow: 0 10px 30px rgba(2, 117, 216, 0.4);
+  min-width: 200px;
+  justify-content: center;
 }
 
 .submit-btn i {
-  margin-left: 10px;
+  margin-left: 12px;
   transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
-  background: #3aaf8a;
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(78, 204, 163, 0.5);
+  box-shadow: 0 15px 40px rgba(2, 117, 216, 0.6);
 }
 
 .submit-btn:hover i {
-  transform: translateX(5px);
+  transform: translateX(8px);
 }
 
 .submit-btn:active {
   transform: translateY(-1px);
 }
 
+.btn-loading {
+  display: none;
+  align-items: center;
+}
+
+.btn-loading .btn-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+.submit-btn.loading .btn-text,
+.submit-btn.loading i {
+  display: none;
+}
+
+.submit-btn.loading .btn-loading {
+  display: flex;
+}
+
 /* Responsive Adjustments */
-@media (max-width: 992px) {
-  .contact {
-    padding: 80px 0;
+@media (max-width: 1200px) {
+  .contact-form {
+    padding: 40px;
   }
   
   .contact-info-card {
-    padding: 25px;
+    padding: 35px;
+  }
+}
+
+@media (max-width: 992px) {
+  .contact {
+    padding: 100px 0;
+  }
+  
+  .contact-info-card {
+    padding: 30px;
   }
   
   .contact-form {
-    padding: 30px;
+    padding: 35px;
   }
   
   .contact-method {
@@ -4356,20 +4651,25 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   .contact-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.3rem;
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+  }
+  
+  .budget-options {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .section-header h2 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
   
   .contact-method {
     flex-direction: column;
     align-items: flex-start;
+    text-align: center;
   }
   
   .contact-details {
@@ -4377,30 +4677,49 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   .contact-form {
-    padding: 25px;
+    padding: 30px;
   }
   
   .form-header h3 {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+  }
+  
+  .budget-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .floating-label input,
+  .floating-label textarea,
+  .floating-label select {
+    padding: 18px 45px 18px 18px;
   }
 }
 
 @media (max-width: 576px) {
   .contact {
-    padding: 60px 0;
+    padding: 80px 0;
   }
   
   .section-header h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
   
   .contact-form {
-    padding: 20px;
+    padding: 25px;
   }
   
   .submit-btn {
     width: 100%;
-    justify-content: center;
+    max-width: 280px;
+  }
+  
+  .budget-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-info-card,
+  .contact-form {
+    border-radius: 15px;
   }
 }
 </style>
@@ -4410,64 +4729,125 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize AOS animations if library is loaded
   if (typeof AOS !== 'undefined') {
     AOS.init({
-      duration: 800,
+      duration: 1000,
       easing: 'ease-in-out',
       once: true
     });
   }
   
-  // Form submission handling
-  const contactForm = document.querySelector('.contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+  const contactForm = document.getElementById('contactForm');
+  const charCount = document.getElementById('charCount');
+  const messageTextarea = document.getElementById('message');
+  const submitBtn = contactForm.querySelector('.submit-btn');
+  
+  // Character counter for message textarea
+  messageTextarea.addEventListener('input', function() {
+    const count = this.value.length;
+    charCount.textContent = count;
+    
+    if (count > 500) {
+      charCount.style.color = '#dc3545';
+    } else if (count > 400) {
+      charCount.style.color = '#ffc107';
+    } else {
+      charCount.style.color = '#5a6c7d';
+    }
+  });
+  
+  // Form submission handling with Formspree
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const loading = form.querySelector('.loading');
+    const errorMessage = form.querySelector('.error-message');
+    const sentMessage = form.querySelector('.sent-message');
+    
+    // Hide previous messages
+    loading.style.display = 'none';
+    errorMessage.style.display = 'none';
+    sentMessage.style.display = 'none';
+    
+    // Show loading state
+    loading.style.display = 'flex';
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    
+    try {
+      const formData = new FormData(form);
       
-      const form = this;
-      const loading = form.querySelector('.loading');
-      const errorMessage = form.querySelector('.error-message');
-      const sentMessage = form.querySelector('.sent-message');
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
       
-      // Show loading state
-      loading.style.display = 'flex';
-      errorMessage.style.display = 'none';
-      sentMessage.style.display = 'none';
-      
-      // Simulate form submission (replace with actual AJAX call)
-      setTimeout(() => {
+      if (response.ok) {
+        // Success
         loading.style.display = 'none';
-        
-        // For demo purposes, we'll assume success
-        // In real implementation, check response from server
         sentMessage.style.display = 'flex';
         form.reset();
+        charCount.textContent = '0';
+        charCount.style.color = '#5a6c7d';
+        
+        // Reset budget selection
+        const budgetRadios = form.querySelectorAll('input[name="budget"]');
+        budgetRadios.forEach(radio => radio.checked = false);
         
         // Hide success message after 5 seconds
         setTimeout(() => {
           sentMessage.style.display = 'none';
         }, 5000);
-        
-        // In case of error:
-        // errorMessage.style.display = 'flex';
-      }, 2000);
-    });
-  }
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      // Error
+      loading.style.display = 'none';
+      errorMessage.style.display = 'flex';
+      console.error('Form submission error:', error);
+    } finally {
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+    }
+  });
   
-  // Add focus effects to form inputs
-  const formInputs = document.querySelectorAll('.floating-label input, .floating-label textarea');
+  // Enhanced input focus effects
+  const formInputs = document.querySelectorAll('.floating-label input, .floating-label textarea, .floating-label select');
   formInputs.forEach(input => {
     input.addEventListener('focus', function() {
-      this.parentNode.querySelector('label').style.color = '#4ecca3';
+      this.parentNode.classList.add('focused');
     });
     
     input.addEventListener('blur', function() {
       if (!this.value) {
-        this.parentNode.querySelector('label').style.color = '#7f8c8d';
+        this.parentNode.classList.remove('focused');
+      }
+    });
+    
+    // Check initial state
+    if (input.value) {
+      input.parentNode.classList.add('focused');
+    }
+  });
+  
+  // Add smooth scrolling for contact links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
       }
     });
   });
 });
 </script>
-</section>
     
     
     
@@ -4478,24 +4858,6 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    <div class="footer-newsletter">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <h4>Join Our Newsletter</h4>
-        <p>Join our news letter for amazing updates</p>
-        <form action="https://formspree.io/f/xknekeno" method="POST">
-          <input type="email" name="email" required placeholder="Your email address">
-          <input type="submit" value="Subscribe">
-          <!-- Optional: Add a hidden input for form identification -->
-          <input type="hidden" name="_subject" value="New Newsletter Subscriber">
-          <input type="hidden" name="_replyto" value="%email%">
-          <input type="text" name="_gotcha" style="display:none">
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
     <div class="footer-top">
       <div class="container">
@@ -4504,7 +4866,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>WorldWays Web-Developers</h3>
             <p>
-              Kahawa Sukari<br>
+              RNG Plaza<br>
               Nairobi<br>
               Kenya<br><br>
               <strong>Phone:</strong> +254112293409<br>
